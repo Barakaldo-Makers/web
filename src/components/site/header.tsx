@@ -3,19 +3,28 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import type { Dictionary, Locale } from "@/lib/dictionaries"
 import { locales } from "@/lib/dictionaries"
+import { asset } from "@/lib/site"
+
+/** "#seccion" apunta a la portada; "/ruta" es una página propia. */
+function navHref(lang: Locale, href: string) {
+  return href.startsWith("#") ? `/${lang}/${href}` : `/${lang}${href}/`
+}
 
 function LanguageSwitch({ lang, label }: { lang: Locale; label: string }) {
+  // Misma página en el otro idioma: /es/galeria/ -> /eu/galeria/
+  const rest = (usePathname() ?? "").split("/").slice(2).join("/")
   return (
     <nav aria-label={label} className="flex items-center font-mono text-xs">
       {locales.map((l, i) => (
         <span key={l} className="flex items-center">
           {i > 0 && <span aria-hidden="true" className="px-1 text-muted-foreground">/</span>}
           <Link
-            href={`/${l}`}
+            href={`/${l}/${rest}`}
             hrefLang={l}
             lang={l}
             aria-current={l === lang ? "true" : undefined}
@@ -29,7 +38,8 @@ function LanguageSwitch({ lang, label }: { lang: Locale; label: string }) {
   )
 }
 
-export function SiteHeader({ lang, t }: { lang: Locale; t: Dictionary }) {
+// Solo ui y nav: es un componente de cliente y todo lo que recibe viaja en cada página
+export function SiteHeader({ lang, t }: { lang: Locale; t: Pick<Dictionary, "ui" | "nav"> }) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -41,8 +51,8 @@ export function SiteHeader({ lang, t }: { lang: Locale; t: Dictionary }) {
         {t.ui.skip}
       </a>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-        <Link href={`/${lang}`} aria-label={t.ui.home} className="flex items-center gap-3">
-          <Image src="/images/logo-brk.png" alt="" width={46} height={38} priority className="h-9 w-auto" />
+        <Link href={`/${lang}/`} aria-label={t.ui.home} className="flex items-center gap-3">
+          <Image src={asset("/images/logo-brk.png")} alt="" width={46} height={38} priority className="h-9 w-auto" />
           <span className="font-display hidden whitespace-nowrap text-lg font-extrabold leading-none sm:block">
             Barakaldo Makers
           </span>
@@ -52,12 +62,12 @@ export function SiteHeader({ lang, t }: { lang: Locale; t: Dictionary }) {
           <ul className="flex items-center gap-1">
             {t.nav.map((item) => (
               <li key={item.href}>
-                <a
-                  href={`/${lang}${item.href}`}
+                <Link
+                  href={navHref(lang, item.href)}
                   className="relative inline-flex min-h-11 items-center whitespace-nowrap px-3 text-sm font-medium after:absolute after:inset-x-3 after:bottom-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-200 after:ease-[cubic-bezier(0.23,1,0.32,1)] focus-visible:after:scale-x-100 [@media(hover:hover)_and_(pointer:fine)]:hover:after:scale-x-100"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -82,14 +92,14 @@ export function SiteHeader({ lang, t }: { lang: Locale; t: Dictionary }) {
               <ul className="flex flex-col border-t border-foreground/10">
                 {t.nav.map((item, i) => (
                   <li key={item.href} className="border-b border-foreground/10">
-                    <a
-                      href={`/${lang}${item.href}`}
+                    <Link
+                      href={navHref(lang, item.href)}
                       onClick={() => setOpen(false)}
                       className="flex min-h-14 items-baseline gap-4 py-3"
                     >
                       <span className="font-mono text-xs text-muted-foreground">0{i + 1}</span>
                       <span className="font-display text-2xl font-extrabold">{item.label}</span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

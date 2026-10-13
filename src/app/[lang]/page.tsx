@@ -6,6 +6,7 @@ import { ProjectVisual } from "@/components/site/project-visuals"
 import { Reveal } from "@/components/site/reveal"
 import { SocialIcon } from "@/components/site/social-icons"
 import { getDictionary, isLocale, links } from "@/lib/dictionaries"
+import { SITE_URL, asset } from "@/lib/site"
 
 const hoverOnly = "[@media(hover:hover)_and_(pointer:fine)]"
 
@@ -61,8 +62,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     "@type": "NGO",
     name: "Barakaldo Makers",
     alternateName: "Asociación Tecnológica Barakaldo Makers",
-    url: "https://www.barakaldomakers.org",
-    logo: "https://www.barakaldomakers.org/images/logo-brk.png",
+    url: `${SITE_URL}/`,
+    logo: `${SITE_URL}/images/logo-brk.png`,
     email: links.email,
     foundingDate: "2020-06-11",
     description: t.meta.description,
@@ -146,7 +147,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </div>
               <div className="relative mt-3 aspect-square overflow-hidden bg-muted">
                 <Image
-                  src="/images/openflexure.jpg"
+                  src={asset("/images/openflexure.jpg")}
                   alt={t.hero.imageAlt}
                   fill
                   priority
@@ -209,7 +210,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   </article>
                   <div className="relative aspect-[4/3] overflow-hidden border border-foreground/20 bg-card lg:col-span-4">
                     {project.image ? (
-                      <Image src={project.image} alt={project.imageAlt ?? project.name} fill sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
+                      <Image src={asset(project.image)} alt={project.imageAlt ?? project.name} fill sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
                     ) : (
                       <ProjectVisual kind={project.visual} alt={t.projects.visualAlt[project.visual]} />
                     )}
@@ -262,9 +263,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </Reveal>
             <Reveal index={1} className="lg:col-span-5 lg:col-start-8 lg:self-end">
               <figure className="relative aspect-[4/3] overflow-hidden border border-foreground/20 bg-card">
-                <Image src={t.about.teamImage} alt={t.about.teamImageAlt} fill sizes="(min-width: 1024px) 34vw, 100vw" className="object-cover" />
+                <Image src={asset(t.about.teamImage)} alt={t.about.teamImageAlt} fill sizes="(min-width: 1024px) 34vw, 100vw" className="object-cover" />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-foreground px-3 py-2 font-mono text-[11px] uppercase tracking-wider text-background">
-                  STEAM GUNEA · 2025
+                  {t.about.teamCaption}
                 </figcaption>
               </figure>
               <dl className="border-2 border-foreground bg-card">
@@ -328,7 +329,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   </div>
                   {item.image && (
                     <div className="relative aspect-[4/3] overflow-hidden border border-foreground/20 bg-card md:col-span-3">
-                      <Image src={item.image} alt={item.imageAlt ?? item.title} fill sizes="(min-width: 768px) 24vw, 100vw" className="object-cover" />
+                      <Image src={asset(item.image)} alt={item.imageAlt ?? item.title} fill sizes="(min-width: 768px) 24vw, 100vw" className="object-cover" />
                     </div>
                   )}
                 </Reveal>
@@ -351,6 +352,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </div>
             <div className="lg:col-span-5">
               <p className="text-step-0 leading-relaxed">{t.training.body}</p>
+              <div className="mt-4">
+                <ExternalLink href={links.formacion} newTab={t.ui.newTab}>
+                  {t.training.link}
+                </ExternalLink>
+              </div>
             </div>
           </Reveal>
         </section>
@@ -386,7 +392,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </div>
             </Reveal>
             <Reveal index={1} className="crop-marks border border-foreground/20 bg-card p-6 sm:p-8 lg:col-span-6 lg:col-start-7">
-              <ContactForm t={t.contact.form} email={links.email} privacyHref={`/${lang}/privacidad`} />
+              <ContactForm t={t.contact.form} email={links.email} privacyHref={`/${lang}/privacidad/`} />
             </Reveal>
           </div>
         </section>

@@ -1,6 +1,8 @@
 import Image from "next/image"
-import { getDictionary, links, type Dictionary, type Locale } from "@/lib/dictionaries"
+import Link from "next/link"
+import { getDictionary, links, type Locale } from "@/lib/dictionaries"
 import { SocialIcon, socialNames, type SocialNetwork } from "@/components/site/social-icons"
+import { asset } from "@/lib/site"
 
 const hoverOnly = "[@media(hover:hover)_and_(pointer:fine)]"
 
@@ -13,7 +15,7 @@ export async function SiteFooter({ lang }: { lang: Locale }) {
     <footer className="border-t-2 border-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-12 lg:px-8">
         <div className="flex items-start gap-4 md:col-span-5">
-          <Image src="/images/logo-brk.png" alt="Barakaldo Makers" width={72} height={60} className="h-14 w-auto" />
+          <Image src={asset("/images/logo-brk.png")} alt="Barakaldo Makers" width={72} height={60} className="h-14 w-auto" />
           <p className="max-w-[32ch] text-sm leading-relaxed text-muted-foreground">{t.footer.tagline}</p>
         </div>
         <nav aria-label={t.footer.social} className="md:col-span-4">
@@ -34,24 +36,27 @@ export async function SiteFooter({ lang }: { lang: Locale }) {
             ))}
           </ul>
         </nav>
-        <nav aria-label="Legal" className="md:col-span-3">
+        <nav aria-label={t.footer.legalLabel} className="md:col-span-3">
           <ul className="grid gap-1 text-sm">
             {t.footer.legal.map((item) => (
               <li key={item.href}>
-                <a
-                  href={item.href}
+                <Link
+                  href={`/${lang}${item.href}/`}
                   className={`inline-flex min-h-11 items-center text-muted-foreground ${hoverOnly}:hover:text-foreground`}
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
       </div>
-      <div className="border-t border-foreground/10 px-4 py-5 text-center text-sm text-muted-foreground">
+      <div className="border-t border-foreground/10 px-4 py-3 text-center text-sm text-muted-foreground">
         Built with Claude Web Builder by{" "}
-        <a href="https://tododeia.com" className="underline underline-offset-4 hover:text-foreground">
+        <a
+          href="https://tododeia.com"
+          className={`inline-flex min-h-11 items-center underline underline-offset-4 ${hoverOnly}:hover:text-foreground`}
+        >
           Tododeia
         </a>
       </div>

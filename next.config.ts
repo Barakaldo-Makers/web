@@ -1,11 +1,24 @@
 import type { NextConfig } from "next";
 
+// GitHub Pages sirve el sitio desde /<repo>/ salvo que el repo sea <usuario>.github.io
+// o tenga dominio propio. El workflow de despliegue pasa la ruta en PAGES_BASE_PATH.
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [{ source: "/", destination: "/es", permanent: false }];
+  output: "export",
+  trailingSlash: true,
+  basePath,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+    NEXT_PUBLIC_SITE_URL: process.env.PAGES_SITE_URL ?? "https://www.barakaldomakers.org",
   },
-  cacheComponents: true,
-  partialPrefetching: true,
+  images: {
+    // GitHub Pages no tiene servidor que optimice imágenes
+    unoptimized: true,
+  },
+  experimental: {
+    globalNotFound: true,
+  },
   turbopack: {
     rules: {
       "*.css": {

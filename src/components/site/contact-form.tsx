@@ -1,6 +1,7 @@
 "use client"
 
 import type { FormEvent } from "react"
+import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -61,9 +62,12 @@ export function ContactForm({ t, email, privacyHref }: Props) {
       </div>
       <p className="text-sm text-muted-foreground">
         {t.privacyPrefix}{" "}
-        <a href={privacyHref} className="underline underline-offset-4 hover:text-foreground">
+        <Link
+          href={privacyHref}
+          className="inline-flex min-h-11 items-center underline underline-offset-4 [@media(hover:hover)_and_(pointer:fine)]:hover:text-foreground"
+        >
           {t.privacy}
-        </a>
+        </Link>
         {t.privacySuffix}
       </p>
       <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">

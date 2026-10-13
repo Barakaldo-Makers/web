@@ -1,5 +1,6 @@
 import Image from "next/image"
 import type { ProjectVisual as Kind } from "@/lib/dictionaries"
+import { asset } from "@/lib/site"
 
 const INK = "#111111"
 const YELLOW = "#ffe100"
@@ -134,7 +135,7 @@ export function ProjectVisual({ kind, alt }: { kind: Kind; alt: string }) {
   const src = kind === "openflexure" ? "/images/openflexure.jpg" : "/images/minicnc.jpg"
   return (
     <Image
-      src={src}
+      src={asset(src)}
       alt={alt}
       fill
       sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"

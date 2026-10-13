@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Barakaldo Makers · web
 
-## Getting Started
+Web de la Asociación Tecnológica Barakaldo Makers, en castellano (`/es/`) y euskera (`/eu/`).
+Next.js 16 exportado como sitio estático y publicado en GitHub Pages.
 
-First, run the development server:
+## Publicar en GitHub Pages
+
+1. Crea un repositorio en GitHub (por ejemplo `Barakaldo-Makers/web`) y sube este proyecto:
+
+   ```bash
+   git remote add origin https://github.com/Barakaldo-Makers/web.git
+   git push -u origin main
+   ```
+
+2. En el repositorio: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+3. Cada push a `main` compila y publica la web (`.github/workflows/deploy.yml`).
+   La primera vez tarda 2-3 minutos. La dirección aparece en la pestaña **Actions** y en
+   **Settings → Pages**.
+
+La ruta base se calcula sola:
+
+| Repositorio | Dirección |
+|---|---|
+| `Barakaldo-Makers/web` | `https://barakaldo-makers.github.io/web/` |
+| `Barakaldo-Makers/barakaldo-makers.github.io` | `https://barakaldo-makers.github.io/` |
+| Con dominio propio | `https://www.barakaldomakers.org/` |
+
+### Dominio propio (opcional)
+
+Para servirla en `www.barakaldomakers.org`, añade el dominio en **Settings → Pages → Custom domain**
+y crea en el DNS un registro `CNAME` de `www` a `barakaldo-makers.github.io`.
+Mientras el dominio apunte a la web WordPress antigua, no lo cambies: varios enlaces
+("Fotos del montaje", "Sobre nosotros", proyectos 5 y 7) todavía llevan allí.
+
+## Trabajar en local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000/es/
+npm run build      # genera la web estática en out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> En Windows, `next build` guarda algunos archivos de precarga (`out/**/__next.*`) en
+> subcarpetas en lugar de con puntos (fallo de Next 16.4 con las barras invertidas).
+> La web funciona igual, solo se pierde la precarga. En GitHub Actions (Linux) no pasa.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Dónde se cambia cada cosa
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Textos** (los dos idiomas): `src/lib/dictionaries.ts`
+- **NIF de la asociación**: `links.nif` en el mismo archivo. Mientras esté vacío, los textos
+  legales no lo mencionan.
+- **Fotos**: `public/images/`
+- **Formulario de contacto**: ahora abre el programa de correo. Para recibir los mensajes
+  sin depender de eso, crea un formulario en formspree.io y sigue el `TODO` de
+  `src/components/site/contact-form.tsx`.

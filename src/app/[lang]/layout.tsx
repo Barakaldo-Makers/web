@@ -4,6 +4,7 @@ import { Archivo, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google"
 import { getDictionary, isLocale, locales } from "@/lib/dictionaries"
 import { SiteHeader } from "@/components/site/header"
 import { SiteFooter } from "@/components/site/footer"
+import { SITE_URL, pageAlternates } from "@/lib/site"
 import "../globals.css"
 
 const display = Archivo({
@@ -27,11 +28,12 @@ const mono = JetBrains_Mono({
   display: "swap",
 })
 
-const SITE_URL = "https://www.barakaldomakers.org"
-
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }))
 }
+
+// Exportación estática: cualquier idioma fuera de la lista es un 404
+export const dynamicParams = false
 
 export const viewport: Viewport = {
   themeColor: "#ffe100",
@@ -43,19 +45,16 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
   const t = getDictionary(lang)
 
   return {
-    metadataBase: new URL(SITE_URL),
+    metadataBase: new URL(`${SITE_URL}/`),
     title: t.meta.title,
     description: t.meta.description,
-    alternates: {
-      canonical: `/${lang}`,
-      languages: { es: "/es", eu: "/eu", "x-default": "/es" },
-    },
+    alternates: pageAlternates(lang),
     openGraph: {
       type: "website",
       siteName: "Barakaldo Makers",
       title: t.meta.title,
       description: t.meta.description,
-      url: `/${lang}`,
+      url: `/${lang}/`,
       locale: lang === "es" ? "es_ES" : "eu_ES",
       alternateLocale: lang === "es" ? ["eu_ES"] : ["es_ES"],
       images: [{ url: "/images/openflexure.jpg", width: 800, height: 778, alt: t.hero.imageAlt }],
@@ -84,7 +83,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <noscript>
           <style>{".reveal{opacity:1;transform:none}.mesh-route{stroke-dashoffset:0}"}</style>
         </noscript>
-        <SiteHeader lang={lang} t={t} />
+        <SiteHeader lang={lang} t={{ ui: t.ui, nav: t.nav }} />
         {children}
         <SiteFooter lang={lang} />
       </body>

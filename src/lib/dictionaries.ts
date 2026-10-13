@@ -9,6 +9,8 @@ const LEGACY = "https://barakaldomakers.org"
 
 export const links = {
   email: "barakaldomakers@gmail.com",
+  /** NIF de la asociación. Mientras esté vacío, los textos legales no lo mencionan. */
+  nif: "",
   formacion: "https://formacion.barakaldomakers.org",
   sobreNosotros: `${LEGACY}/sobre-nosotros/`,
   social: {
@@ -69,6 +71,7 @@ const es = {
   nav: [
     { href: "#proyectos", label: "Proyectos" },
     { href: "#quienes-somos", label: "Quiénes somos" },
+    { href: "#actividades", label: "Actividades" },
     { href: "#formacion", label: "Formación" },
     { href: "#contacto", label: "Contacto" },
     { href: "/galeria", label: "Galería" },
@@ -101,7 +104,7 @@ const es = {
     facts: [
       { value: "10+", label: "Eventos" },
       { value: "300+", label: "Participantes" },
-      { value: "5+", label: "Proyectos" },
+      { value: "7", label: "Proyectos" },
       { value: "6.000€", label: "Gestionados" },
     ],
     specCode: "PRY-03 · FICHA",
@@ -185,7 +188,7 @@ const es = {
       {
         code: "PRY-07",
         visual: "minicnc",
-        image: "/images/trituradora botellas.jpg",
+        image: "/images/trituradora-botellas.jpg",
         imageAlt: "Trituradora de botellas PET para reciclaje de filamento",
         tag: "Reciclaje · Economía circular",
         name: "Sistema de Reciclaje de Filamento",
@@ -235,6 +238,7 @@ const es = {
     link: "Leer más sobre nosotros",
     teamImage: "/images/equipo.jpg",
     teamImageAlt: "Equipo de Barakaldo Makers en evento STEAM-GUNEA con robot e impresora 3D",
+    teamCaption: "STEAM GUNEA · 2025",
     collaboratorsLabel: "Colaboraciones institucionales",
     collaborators: [
       "Inguralde",
@@ -286,8 +290,9 @@ const es = {
   },
   training: {
     eyebrow: "05 · Formación",
-    title: "Hemos impartido formación",
-    body: "Entre otras cosas, hemos dado un curso de programación en Python.",
+    title: "Talleres y cursos",
+    body: "Damos talleres prácticos de electrónica, sensores e impresión 3D, y hemos impartido un curso de programación en Python. El calendario y las inscripciones están en nuestra web de formación.",
+    link: "Ver talleres BRKMK",
   },
   contact: {
     eyebrow: "06 · Contacto",
@@ -309,21 +314,27 @@ const es = {
   },
   footer: {
     tagline: "Asociación tecnológica sin ánimo de lucro. Barakaldo, Bizkaia.",
+    legalLabel: "Legal",
     legal: [
-      { href: "/es/galeria", label: "Galería" },
-      { href: "/es/aviso-legal", label: "Aviso legal" },
-      { href: "/es/privacidad", label: "Política de privacidad" },
-      { href: "/es/cookies", label: "Política de cookies" },
+      { href: "/aviso-legal", label: "Aviso legal" },
+      { href: "/privacidad", label: "Política de privacidad" },
+      { href: "/cookies", label: "Política de cookies" },
     ],
     social: "Redes",
   },
+  notFound: {
+    title: "Esta página no existe",
+    body: "Puede que el enlace esté mal o que la página se haya movido.",
+    back: "Volver al inicio",
+  },
   legal: {
     privacidad: {
-      updated: "[FECHA] · v1.0",
+      title: "Política de privacidad",
+      updated: "Última actualización: octubre de 2026",
       sections: [
         {
           title: "1. Responsable del tratamiento",
-          body: "El responsable del tratamiento de los datos personales recogidos a través de este sitio web es la asociación Barakaldo Makers, con domicilio en Barakaldo (Bizkaia) y NIF [NIF]. Puede contactar con nosotros a través del correo electrónico {email} o del grupo de Telegram."
+          body: "El responsable del tratamiento de los datos personales recogidos a través de este sitio web es la asociación Barakaldo Makers{nif}, con domicilio en Barakaldo (Bizkaia). Puede contactar con nosotros a través del correo electrónico {email} o del grupo de Telegram."
         },
         {
           title: "2. Finalidad del tratamiento",
@@ -352,11 +363,12 @@ const es = {
       ]
     },
     avisoLegal: {
-      updated: "[FECHA] · v1.0",
+      title: "Aviso legal",
+      updated: "Última actualización: octubre de 2026",
       sections: [
         {
           title: "1. Datos identificativos",
-          body: "En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE), se informa que este sitio web es titularidad de la asociación Barakaldo Makers, con NIF [NIF] y domicilio en Barakaldo (Bizkaia). Correo electrónico de contacto: {email}."
+          body: "En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE), se informa que este sitio web es titularidad de la asociación Barakaldo Makers{nif}, con domicilio en Barakaldo (Bizkaia). Correo electrónico de contacto: {email}."
         },
         {
           title: "2. Objeto y ámbito",
@@ -381,27 +393,28 @@ const es = {
       ]
     },
     cookies: {
-      updated: "[FECHA] · v1.0",
+      title: "Política de cookies",
+      updated: "Última actualización: octubre de 2026",
       sections: [
         {
           title: "1. ¿Qué son las cookies?",
-          body: "Las cookies son pequeños archivos de texto que los sitios web almacenan en su dispositivo (ordenador, tableta, teléfono móvil) cuando los visitan. Son ampliamente utilizadas para que los sitios web funcionen correctamente, o de manera más eficiente, así como para proporcionar información a los propietarios del sitio web."
+          body: "Las cookies son pequeños archivos de texto que los sitios web almacenan en su dispositivo (ordenador, tableta, teléfono móvil) cuando los visitan. Sirven, por ejemplo, para recordar preferencias o para medir visitas."
         },
         {
-          title: "2. Tipos de cookies que utilizamos",
-          body: "En este sitio web utilizamos cookies técnicas y de preferencias, necesarias para el correcto funcionamiento de la web y para recordar sus preferencias de navegación. No utilizamos cookies de seguimiento, analíticas o publicitarias sin su consentimiento expreso."
+          title: "2. Cookies que utiliza este sitio",
+          body: "Ninguna. Este sitio web no instala cookies propias: no usamos analítica, publicidad ni seguimiento, y las fuentes tipográficas se sirven desde nuestro propio servidor. Por eso no le mostramos ningún aviso de consentimiento."
         },
         {
           title: "3. Cookies de terceros",
-          body: "Al utilizar enlaces a redes sociales externas (Telegram, GitLab, GitHub, Facebook, X), dichas plataformas pueden instalar cookies en su dispositivo. Le recomendamos consultar las políticas de privacidad y cookies de dichas plataformas para obtener más información."
+          body: "Si sigue un enlace a una plataforma externa (Telegram, GitLab, GitHub, Facebook, X), esa plataforma puede instalar sus propias cookies cuando llegue a ella. Le recomendamos consultar sus políticas de privacidad y de cookies."
         },
         {
           title: "4. Gestión y desactivación de cookies",
-          body: "Puede permitir, bloquear o eliminar las cookies instaladas en su dispositivo mediante la configuración de las opciones del navegador. A continuación, le proporcionamos enlaces con información sobre cómo hacerlo en los principales navegadores: Chrome, Firefox, Safari, Edge."
+          body: "Puede permitir, bloquear o eliminar las cookies desde la configuración de su navegador. En la ayuda de Chrome, Firefox, Safari o Edge encontrará cómo hacerlo."
         },
         {
           title: "5. Cambios en la política de cookies",
-          body: "Esta política de cookies puede ser actualizada periódicamente para reflejar cambios en las cookies que utilizamos o por motivos operativos, legales o regulatorios. Le recomendamos revisar esta política de forma regular para mantenerse informado sobre cómo utilizamos las cookies."
+          body: "Si en el futuro empezamos a usar cookies, actualizaremos esta política y, cuando la ley lo exija, le pediremos su consentimiento antes de instalarlas."
         },
         {
           title: "6. Contacto",
@@ -434,6 +447,7 @@ const eu: Dictionary = {
   nav: [
     { href: "#proyectos", label: "Proiektuak" },
     { href: "#quienes-somos", label: "Nor gara" },
+    { href: "#actividades", label: "Jarduerak" },
     { href: "#formacion", label: "Prestakuntza" },
     { href: "#contacto", label: "Harremanak" },
     { href: "/galeria", label: "Galeria" },
@@ -443,17 +457,17 @@ const eu: Dictionary = {
     title: "Gure maker sorkuntzak",
     intro: "Maker-espazioaren proiektu, ekitaldi eta jardueren argazkiak.",
     items: [
-      { src: "/images/artemis.jpg", alt: "Mahaia laserrarekin, sareta eta eredu-hegazkinarekin" },
+      { src: "/images/artemis.jpg", alt: "Mahaia laserrarekin, saretarekin eta suziri-eredu batekin" },
       { src: "/images/ArtemisII.jpg", alt: "Artemis proiektuaren xehetasuna" },
-      { src: "/images/velutinas.jpg", alt: "Itsas-ekosistema eta velutinei buruzko erakusketa" },
-      { src: "/images/catenarias.jpg", alt: "Taileraren katenariak eta egiturak" },
-      { src: "/images/dispositivos.jpg", alt: "Maker azokan maker-proiektuen erakusketa" },
-      { src: "/images/dispositivos_2.jpg", alt: "Prusa i3 inprimagailua eta robot aurkarabe dituen standa" },
-      { src: "/images/makerio.jpg", alt: "3Dn inprimatutako kaxelekin DIY elektronika" },
-      { src: "/images/soldadora_filamento.jpg", alt: "Filamendu soldagailua" },
-      { src: "/images/steam_gunea2.jpg", alt: "STEAM GUNEA familien jarduera" },
-      { src: "/images/canairio_No2.jpg", alt: "M5Stamp, kamera eta sentsorea duen CanAIRIO kaxa estanka" },
-      { src: "/images/triturando.jpg", alt: "Botella PETak birziklapen xurrunbidean" },
+      { src: "/images/velutinas.jpg", alt: "Itsas ekosistemari eta liztor asiarrari buruzko erakusketa" },
+      { src: "/images/catenarias.jpg", alt: "Tailerreko katenariak eta egiturak" },
+      { src: "/images/dispositivos.jpg", alt: "Maker proiektuen erakusketa azoka batean" },
+      { src: "/images/dispositivos_2.jpg", alt: "Prusa i3 inprimagailua eta beldar-robota dituen standa" },
+      { src: "/images/makerio.jpg", alt: "DIY elektronika, 3Dn inprimatutako karkasekin" },
+      { src: "/images/soldadora_filamento.jpg", alt: "Filamentua soldatzeko gailua" },
+      { src: "/images/steam_gunea2.jpg", alt: "STEAM GUNEA jarduera familiekin" },
+      { src: "/images/canairio_No2.jpg", alt: "CanAIRIO kaxa estankoa, M5Stamp eta kamerarekin" },
+      { src: "/images/triturando.jpg", alt: "PET botilak birziklatzeko txikitzen" },
     ],
   },
   hero: {
@@ -466,7 +480,7 @@ const eu: Dictionary = {
     facts: [
       { value: "10+", label: "Ekitaldi" },
       { value: "300+", label: "Parte-hartzaile" },
-      { value: "5+", label: "Proiektu" },
+      { value: "7", label: "Proiektu" },
       { value: "6.000€", label: "Kudeatua" },
     ],
     specCode: "PRY-03 · FITXA",
@@ -527,11 +541,11 @@ const eu: Dictionary = {
         code: "PRY-05",
         visual: "openflexure",
         image: "/images/velutinas_ecosistema.jpg",
-        imageAlt: "3D inprimagailua eta Velutinas BRKMK trampentzat inprimatutako piezak dituen lan-mahaia",
-        tag: "Ingurumen · Fabrikazioa",
+        imageAlt: "3D inprimagailua eta Velutinas BRKMK tranpetarako inprimatutako piezak dituen lan-mahaia",
+        tag: "Ingurumena · Fabrikazioa",
         name: "Velutinas BRKMK",
-        summary: "Avispa asiatikarentzat trampa eleiboak filamento eraberritua erabiliz.",
-        body: "Vespa velutina harrapatzeko diseinu proprioa. Botella PETetako filamento eraberritua erabiliz fabrikatuta. 2024tik eskualdeko boluntarioak banatuta.",
+        summary: "Liztor asiarrarentzako tranpa selektiboak, birziklatutako filamentuarekin.",
+        body: "Liztor asiarra (Vespa velutina) modu selektiboan harrapatzeko geuk diseinatutako tranpa. PET botiletatik birziklatutako filamentuarekin fabrikatzen dugu, eta 2024tik eskualdeko boluntarioei banatzen dizkiegu.",
         href: `${LEGACY}/velutinas-brkmk/`,
         linkLabel: "Velutinas BRKMK-ri buruz",
       },
@@ -540,22 +554,22 @@ const eu: Dictionary = {
         visual: "canairio",
         image: "/images/Sonometro.jpg",
         imageAlt: "ESP32, OLED pantaila eta mikrofonodun DIY sonometro digitala",
-        tag: "Sentsore · Akustika",
-        name: "Sonometro Digitala",
-        summary: "CanAIRIO sarean integratutako ingurumen-zarata neurgailua.",
-        body: "Eskola eta espazio publikoetan instalatutako maila soinu neurgailua. CanAIRIO sarearen parte da, akustika-kutsaduraren datuak ematen dituena.",
+        tag: "Sentsoreak · Akustika",
+        name: "Sonometro digitala",
+        summary: "CanAIRIO sarean integratutako ingurumen-zarataren neurgailua.",
+        body: "Soinu-maila neurtzeko gailua, ikastetxeetan eta espazio publikoetan instalatua. CanAIRIO sarearen parte da, eta kutsadura akustikoaren datuak ematen ditu denbora errealean.",
         href: projectLinks.canairio,
         linkLabel: "Ikusi CanAIRIO",
       },
       {
         code: "PRY-07",
         visual: "minicnc",
-        image: "/images/trituradora botellas.jpg",
-        imageAlt: "3D inprimaketako filamendurako botella PETak triturgailua",
-        tag: "Birziklapen · Zirkuitu ekonomikoa",
-        name: "Filamento Birziklapen Sistema",
-        summary: "Botella PETak 3D inprimaketako filamendu bihurtzea.",
-        body: "Botella PETak inprimaketako filamendu bihurtzeko prozesua. Zikloa ixten dugu: hondoretatik fabrikazio-materiala gure tailer berean.",
+        image: "/images/trituradora-botellas.jpg",
+        imageAlt: "PET botilak txikitzeko makina, 3D inprimaketarako filamentua egiteko",
+        tag: "Birziklapena · Ekonomia zirkularra",
+        name: "Filamentua birziklatzeko sistema",
+        summary: "PET botilak 3D inprimagailuetarako filamentu bihurtzen ditugu.",
+        body: "PET botilak 3D inprimaketarako filamentu bihurtzeko prozesua. Zikloa ixten dugu: hondakinetik fabrikazio-materialera, gure tailerrean bertan.",
         href: `${LEGACY}/reciclaje-filamento/`,
         linkLabel: "Birziklapenari buruz",
       },
@@ -600,6 +614,7 @@ const eu: Dictionary = {
     link: "Irakurri gehiago guri buruz",
     teamImage: "/images/equipo.jpg",
     teamImageAlt: "Barakaldo Makers taldea STEAM-GUNEA ekitaldian, robot eta 3D inprimagailuarekin",
+    teamCaption: "STEAM GUNEA · 2025",
     collaboratorsLabel: "Erakundeen lankidetzak",
     collaborators: [
       "Inguralde",
@@ -619,40 +634,41 @@ const eu: Dictionary = {
         year: "2025",
         title: "STEAM GUNEA",
         image: "/images/steam_gunea.jpg",
-        imageAlt: "Feria STEAM con familias y mesas de actividades",
-        body: "Barakaldoko Udalarekin familiaentzat maker-espazioa. 2025eko Arrabetako saioa Crukes zentroziban. 2026an 3. eta 4. saioak aurreikusita.",
+        imageAlt: "STEAM azoka, familiekin eta jarduera-mahaiekin",
+        body: "Familientzako maker-espazioa, Barakaldoko Udalarekin batera. 2025eko urriko saioa Gurutzetako Gizarte Etxean izan zen. 2026rako 3. eta 4. saioak daude aurreikusita.",
       },
       {
         year: "2025",
         title: "Zientzia Astea",
-        body: "Sentsore ambientalak eta sonometroa tailer. Ekitaldien arrakastatsuena. CIME Etxebarriren parte-hartzea eta beste batzuk.",
+        body: "Ingurumen-sentsoreen eta sonometroaren tailerra, ekitaldiko arrakastatsuena. CIME Etxebarrin eta beste leku batzuetan ere parte hartu genuen.",
       },
       {
         year: "2025",
-        title: "ETB2 Reportajea",
-        body: "Barakaldoko Avispeak. 2025eko Azaroa. Avispa asiatarren trampen inguruan.",
+        title: "ETB2ko erreportajea",
+        body: "«Las Avispas de Barakaldo», 2025eko azaroa. Liztor asiarrarentzako gure tranpei buruzkoa.",
       },
       {
         year: "2024-2026",
-        title: "Velutinas Kanpaina",
-        body: "Avispa asiatarrentzat trampa eleiboen diseinua eta banaketa.",
+        title: "Velutinas kanpaina",
+        body: "Liztor asiarrarentzako tranpa selektiboen diseinua eta banaketa.",
       },
       {
         year: "2024",
-        title: "Avispa Asiatikako Prestakuntza",
-        body: "2024eko Urria, basozaintza-teknikariak emana.",
+        title: "Liztor asiarrari buruzko prestakuntza",
+        body: "2024ko urria, baso-teknikari batek emana.",
       },
       {
         year: "2024",
         title: "Innpulso Emprende",
-        body: "7. edizioan parte-hartzea Zientzia, Berrikuntza eta Unibertsitate Ministeriarekin.",
+        body: "7. edizioan parte hartu genuen, Zientzia, Berrikuntza eta Unibertsitate Ministerioarekin.",
       },
     ] satisfies ActivityItem[] as ActivityItem[],
   },
   training: {
     eyebrow: "05 · Prestakuntza",
-    title: "Prestakuntza eman dugu",
-    body: "Besteak beste, Python programazio-ikastaro bat eman dugu.",
+    title: "Tailerrak eta ikastaroak",
+    body: "Elektronika, sentsore eta 3D inprimaketako tailer praktikoak ematen ditugu, eta Python programazio-ikastaro bat ere eman dugu. Egutegia eta izen-ematea gure prestakuntza-webgunean daude.",
+    link: "Ikusi BRKMK tailerrak",
   },
   contact: {
     eyebrow: "06 · Harremanak",
@@ -674,108 +690,115 @@ const eu: Dictionary = {
   },
   footer: {
     tagline: "Irabazi asmorik gabeko elkarte teknologikoa. Barakaldo, Bizkaia.",
+    legalLabel: "Lege-informazioa",
     legal: [
-      { href: "/eu/galeria", label: "Galeria" },
-      { href: "/eu/aviso-legal", label: "Lege-oharra" },
-      { href: "/eu/privacidad", label: "Pribatutasun-politika" },
-      { href: "/eu/cookies", label: "Cookie-politika" },
+      { href: "/aviso-legal", label: "Lege-oharra" },
+      { href: "/privacidad", label: "Pribatutasun-politika" },
+      { href: "/cookies", label: "Cookie-politika" },
     ],
     social: "Sareak",
   },
+  notFound: {
+    title: "Orri hau ez dago",
+    body: "Baliteke esteka okerra izatea edo orria lekuz aldatu izana.",
+    back: "Itzuli hasierara",
+  },
   legal: {
     privacidad: {
-      updated: "[FECHA] · v1.0",
+      title: "Pribatutasun-politika",
+      updated: "Azken eguneratzea: 2026ko urria",
       sections: [
         {
           title: "1. Tratamenduaren arduraduna",
-          body: "Webgune honen bidez bildutako datu pertsonalen tratamenduaren arduraduna Barakaldo Makers elkartea da, helbidea Barakaldon (Bizkaia) eta [NIF] NIF-a duena. Gurekin harremanetan jar zaitezke {email} posta elektronikoaren bidez edo Telegram taldearen bidez."
+          body: "Webgune honen bidez bildutako datu pertsonalen tratamenduaren arduraduna Barakaldo Makers elkartea da{nif}, Barakaldon (Bizkaia) egoitza duena. Gurekin harremanetan jar zaitezke {email} helbide elektronikoaren edo Telegrameko taldearen bidez."
         },
         {
           title: "2. Tratamenduaren helburua",
-          body: "Harremanako formularioaren bidez ematen dituzun datu pertsozialak zure kontsulta, lankidetza-proposamena edo bazkide-izena kudeatzeko soilik erabiliko dira. Ez dira beste inongo helburuetarako erabiliko zure baimen esplikiturik gabe."
+          body: "Harremanetarako formularioaren bidez ematen dizkiguzun datu pertsonalak zure kontsulta, lankidetza-proposamena edo bazkide izateko eskaera kudeatzeko baino ez ditugu erabiliko. Ez ditugu beste helburu batzuetarako erabiliko zure berariazko baimenik gabe."
         },
         {
-          title: "3. Legaltasuna",
-          body: "Zure datuen tratamenduaren oinarri legala interesatuaren baimena da, harremanako formularioa bidaltzean ematen dena, eta aurrekontraktual neurriak exekutatzea bazkide-izena eskabetzean."
+          title: "3. Legitimazioa",
+          body: "Datuak tratatzeko oinarri juridikoa interesdunaren baimena da, harremanetarako formularioa bidaltzean ematen dena. Bazkide izateko eskaeretan, kontratu aurreko neurriak betetzea ere bada oinarri."
         },
         {
-          title: "4. Datuen kontserbazioa",
-          body: "Emandako datu pertsonalak jasotzeko helburua betetzeko denboran kontserbatuko dira, eta helburu horretatik eratorritakoantzukizunak zehazteko, artxibuen eta dokumentazioaren arautako epeak gainera."
+          title: "4. Datuak gordetzea",
+          body: "Datu pertsonalak bildu ziren helburua betetzeko behar den denboran gordeko ditugu, baita helburu horretatik sor litezkeen erantzukizunak zehazteko behar den denboran ere, artxiboei eta dokumentazioari buruzko araudiak ezarritako epeak errespetatuz."
         },
         {
           title: "5. Hartzaileak",
-          body: "Ez dira datukik hirugarrenen partekatuko, legezko betebeharretan edo eskatutako zerbitzua eman behar denean. Ez dira nazioarteko datu-transferentziak egiten."
+          body: "Ez diegu daturik lagako hirugarrenei, legezko betebeharra dagoenean edo eskatutako zerbitzua emateko beharrezkoa denean izan ezik. Ez dugu daturik nazioartera transferitzen."
         },
         {
-        title: "6. Eskubideak",
-          body: "Pertsona orok du bere datu pertsonalak tratatzen diren berreskuratzeko eskubidea. Interesatuek bere datu pertsonalak atzitzeko eskubidea dute, eta datu zuzenak zuzendu, ezabatu, mugatu, mugakortasuna edo tratamenduaren aurka eskatzeko. Eskubide horiek {email} helbidera idatziz erabili ditzakezu, zein eskubide erabili nahi duzun adierazita."
+          title: "6. Eskubideak",
+          body: "Edonork du eskubidea jakiteko ea bere datu pertsonalak tratatzen ari garen. Interesdunek eskubidea dute beren datuak eskuratzeko, datu okerrak zuzentzeko eta datuak ezabatzeko, baita tratamendua mugatzeko, datuak eramateko eta tratamenduari aurka egiteko ere. Eskubide horiek baliatzeko, idatzi {email} helbidera eta adierazi zein eskubide baliatu nahi duzun."
         },
         {
-          title: "7. Adin txikikoak",
-          body: "Webgune hau 14 urte baino gutxiago daudenentzat ez dago zuzenduta. Elkarteak ez ditu nahitaez adin txikikoen datu pertsonalik biltzen. 14 urte baino gutxiago badituzu, mesedez, ez emon datu pertsonalik."
+          title: "7. Adingabeak",
+          body: "Webgune hau ez dago 14 urtetik beherakoei zuzenduta. Elkarteak ez du nahita adingabeen datu pertsonalik biltzen. 14 urte baino gutxiago badituzu, mesedez, ez iezaguzu daturik eman."
         }
       ]
     },
     avisoLegal: {
-      updated: "[FECHA] · v1.0",
+      title: "Lege-oharra",
+      updated: "Azken eguneratzea: 2026ko urria",
       sections: [
         {
           title: "1. Datu identifikatzaileak",
-          body: "2002ko uztailaren 11ko 34/2002 Legearen betetzerakoan, Informazio Gizartea eta Elektronika Merkataritza Zerbitzuei buruzkoa (LSSI-CE), webgune honen titularra Barakaldo Makers elkartea dela jakinarazten da, [NIF] NIF-a eta Barakaldoko (Bizkaia) helbidea duena. Harremaneko posta elektronikoa: {email}."
+          body: "Informazioaren Gizartearen Zerbitzuei eta Merkataritza Elektronikoari buruzko uztailaren 11ko 34/2002 Legea (LSSI-CE) betez, jakinarazten da webgune honen titularra Barakaldo Makers elkartea dela{nif}, Barakaldon (Bizkaia) egoitza duena. Harremanetarako helbide elektronikoa: {email}."
         },
         {
-          title: "2. Objektua eta esparrua",
-          body: "Webgune honen helburua Barakaldo Makers elkartearen jarduerak, proiektuak eta zerbitzuak ezagutzatzea da, eta lankidetzan, parte-hartzean edo gure ekiburuei buruzko informazioa jasotzeko interesa duten pertsona eta erakundeekin harremana erraztea."
+          title: "2. Xedea eta eremua",
+          body: "Webgune honen xedea Barakaldo Makers elkartearen jarduerak, proiektuak eta zerbitzuak ezagutaraztea da, baita gure ekimenetan lankidetzan aritu, parte hartu edo horiei buruzko informazioa jaso nahi duten pertsona eta erakundeekiko harremana erraztea ere."
         },
         {
           title: "3. Jabetza intelektuala eta industriala",
-          body: "Webgune honen eduki guztiak, testuak, argazkiak, grafikoak, irudiak, ikonoak, softwarea, diseinu grafikoa eta iturri-kodeak Barakaldo Makers elkartearenak edo erabiltzeko baimena duten hirugarrenenak dira, eta jabetza intelektual eta industrialaren araupean babestuta daude. Erreprodukzioa, banaketa, komunikazio publikoa eta eraldaketa debekatuta dago titularraren baimen esplikirik gabe."
+          body: "Webgune honetako eduki guztiak (testuak, argazkiak, grafikoak, irudiak, ikonoak, softwarea, diseinu grafikoa eta iturburu-kodea) Barakaldo Makers elkartearenak dira edo erabiltzeko baimena eman duten hirugarrenenak, eta jabetza intelektualari eta industrialari buruzko araudiak babesten ditu. Debekatuta dago edukiak erreproduzitzea, banatzea, jendaurrean komunikatzea eta eraldatzea, titularraren berariazko baimenik gabe."
         },
         {
-          title: "4.antzukizuna",
-          body: "Elkarteak ez du bermatzen webgunean etengabeko erabilera eta eduki akatsik egoterik. Ez da erantzule etenaldi, atzerapen edo gaizki funtzionamenduarekin erlazionatutako kaltea edo erabiltzaileek edukian duten informazioaren erabileratik eratorritako kalteetarako."
+          title: "4. Erantzukizuna",
+          body: "Elkarteak ez du bermatzen webgunea etengabe erabilgarri egongo denik, ezta edukietan akatsik egongo ez denik ere. Ez da webgunearen etenaldi, atzerapen edo funtzionamendu txarretik eratorritako kalteen erantzule, ezta bertan dagoen informazioaren erabileratik eratorritakoen erantzule ere."
         },
         {
           title: "5. Kanpoko estekak",
-          body: "Webgune honek hirugarren webguneen estekak izan ditzake. Elkarteak ez da erantzule estekatutako webguneen edukietatik, pribatutasun-politiketatik edo praktiketatik. Esteka bat ez da derrigorrezko onarpena edo gomendioa."
+          body: "Webgune honek hirugarrenen webguneetarako estekak izan ditzake. Elkartea ez da estekatutako webguneen edukien, pribatutasun-politiken edo jardunbideen erantzule. Esteka bat jartzeak ez du esan nahi webgune hori onartzen edo gomendatzen dugunik."
         },
         {
-          title: "6. Arautzailea eta jurisdikzioa",
-          body: "Lege-oharra espainiar arautzailearen menpe dago. Webgune honen edo erabileran edo erabileran datozen edozein eztabaidari emateko, aldeak Bilboko epaileku eta epitazioetara dira, beste inongo eskumenik ukatuz."
+          title: "6. Legeria aplikagarria eta jurisdikzioa",
+          body: "Lege-ohar hau Espainiako legeriak arautzen du. Webgune honetara sartzetik edo hura erabiltzetik sor daitekeen edozein gatazka ebazteko, alderdiek berariaz Bilboko epaitegi eta auzitegien eskumena onartzen dute, beste edozein foruri uko eginez."
         }
       ]
     },
     cookies: {
-      updated: "[FECHA] · v1.0",
+      title: "Cookie-politika",
+      updated: "Azken eguneratzea: 2026ko urria",
       sections: [
         {
-          title: "1. Zer dira cookie-ak?",
-          body: "Cookie-ak dokumentu txikiak dira, webguneek zure gailuan (ordenagailua, tableta, telefono mugikorra) gordetzen dituztenak bisitatzen direnean. Erabiliak dira webguneak ondo funtzionatzeko, eraginkortasun handiagoz, eta webgune jabeentzako informazioa emateko."
+          title: "1. Zer dira cookieak?",
+          body: "Cookieak testu-fitxategi txikiak dira, webguneek zure gailuan (ordenagailua, tableta, telefono mugikorra) gordetzen dituztenak haiek bisitatzean. Adibidez, hobespenak gogoratzeko edo bisitak neurtzeko balio dute."
         },
         {
-          title: "2. Erabilitako cookie motak",
-          body: "Webgune honek cookie teknikokoak eta hobespenak erabiltzen ditu, webguneak ondo funtzionatzeko eta zure nabigazio-hobespenak gogoratzeko beharrezkoak direnak. Ez dugu jarraipen, analitika edo publizitaterik erabiltzen baimen esplikirik gabe."
+          title: "2. Webgune honek erabiltzen dituen cookieak",
+          body: "Bat ere ez. Webgune honek ez du cookie propiorik instalatzen: ez dugu analitikarik, publizitaterik edo jarraipenik erabiltzen, eta letra-tipoak gure zerbitzaritik zerbitzatzen dira. Horregatik ez dizugu baimen-oharrik erakusten."
         },
         {
-          title: "3. Hirugarren cookie-ak",
-          body: "Kanpoko sare sozialetara (Telegram, GitLab, GitHub, Facebook, X) estekak erabilitzean, plataformek zure gailuan cookie-ak instala ditzakete. Zure informazio gehiago lortzeko, gomendatzen dugu plataformek beraien pribatutasun-politika eta cookie-politika kontsultatzea."
+          title: "3. Hirugarrenen cookieak",
+          body: "Kanpoko plataforma baterako esteka bati jarraitzen badiozu (Telegram, GitLab, GitHub, Facebook, X), plataforma horrek bere cookieak instala ditzake bertara iristean. Haien pribatutasun- eta cookie-politikak kontsultatzea gomendatzen dizugu."
         },
         {
-          title: "4. Cookie-en kudeaketa eta desaktibazioa",
-          body: "Zure gailuan instalatutako cookie-ak ondo, blokeatu edo ezabatu ditzakezu nabigatzailearen aukera konfiguratuz. Jarraian, nabigatzaile nagusietan nola egin ibilbideak ematen ditugu: Chrome, Firefox, Safari, Edge."
+          title: "4. Cookieak kudeatzea eta desaktibatzea",
+          body: "Zure nabigatzailearen ezarpenetatik cookieak onartu, blokeatu edo ezabatu ditzakezu. Chrome, Firefox, Safari edo Edge nabigatzaileen laguntzan aurkituko duzu nola egin."
         },
         {
-          title: "5. Cookie-politika-aldaketak",
-          body: "Cookie-politika hau aldian behin eguneratzen da erabili ditugun cookie-ekin aldaketak erakusteko edo operazio, lege edo arazo erregulatzaileak direla eta. Gomendatzen dugu cookie-politika hau maiz berrikustea, cookie-ak nola erabiltzen dugun jakin izateko."
+          title: "5. Cookie-politikaren aldaketak",
+          body: "Etorkizunean cookieak erabiltzen hasten bagara, politika hau eguneratuko dugu eta, legeak hala eskatzen duenean, zure baimena eskatuko dizugu haiek instalatu aurretik."
         },
         {
-          title: "6. Harremana",
-          body: "Cookie-politika honen inguruko galderarik baduzu, gurekin harremanetan jar zaitezke {email} posta elektronikoaren bidez."
+          title: "6. Harremanak",
+          body: "Cookie-politika honi buruzko zalantzarik baduzu, idatzi iezaguzu {email} helbidera."
         }
       ]
     }
-  }
-,
+  },
 }
 
 const dictionaries: Record<Locale, Dictionary> = { es, eu }

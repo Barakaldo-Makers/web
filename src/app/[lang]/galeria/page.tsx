@@ -3,8 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getDictionary, isLocale } from "@/lib/dictionaries"
 import { Reveal } from "@/components/site/reveal"
-
-const hoverOnly = "[@media(hover:hover)_and_(pointer:fine)]"
+import { asset, pageAlternates } from "@/lib/site"
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -22,8 +21,8 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/galeria">)
   return {
     title: `${t.gallery.title} · Barakaldo Makers`,
     description: t.gallery.intro,
-    alternates: { canonical: `/${lang}/galeria` },
-    openGraph: { title: `${t.gallery.title} · Barakaldo Makers`, description: t.gallery.intro, url: `/${lang}/galeria` },
+    alternates: pageAlternates(lang, "/galeria"),
+    openGraph: { title: `${t.gallery.title} · Barakaldo Makers`, description: t.gallery.intro, url: `/${lang}/galeria/` },
   }
 }
 
@@ -54,9 +53,10 @@ export default async function Galeria({ params }: PageProps<"/[lang]/galeria">) 
               <Reveal as="li" key={item.src} index={i}>
                 <figure className="group border border-foreground/20 bg-card">
                   <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                    {/* El pie de foto ya describe la imagen; alt vacío evita que se lea dos veces */}
                     <Image
-                      src={item.src}
-                      alt={item.alt}
+                      src={asset(item.src)}
+                      alt=""
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.03]"
