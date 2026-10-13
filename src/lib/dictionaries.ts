@@ -91,7 +91,7 @@ const es = {
       { src: "/images/soldadora_filamento.jpg", alt: "Dispositivo de soldadura de filamento" },
       { src: "/images/steam_gunea2.jpg", alt: "Actividad STEAM GUNEA con familias" },
       { src: "/images/canairio_No2.jpg", alt: "Caja estanca CanAIRIO con M5Stamp y cámara" },
-      { src: "/images/triturando.jpg", alt: "Triturando botellas PET para reciclaje" },
+      { src: "/images/triturando.jpg", alt: "Triturando plástico para reciclaje" },
     ],
   },
   hero: {
@@ -506,7 +506,7 @@ const eu: Dictionary = {
       { src: "/images/soldadora_filamento.jpg", alt: "Filamentua soldatzeko gailua" },
       { src: "/images/steam_gunea2.jpg", alt: "STEAM GUNEA jarduera familiekin" },
       { src: "/images/canairio_No2.jpg", alt: "CanAIRIO kaxa estankoa, M5Stamp eta kamerarekin" },
-      { src: "/images/triturando.jpg", alt: "PET botilak birziklatzeko txikitzen" },
+      { src: "/images/triturando.jpg", alt: "Plastikoa birziklatzeko txikitzen" },
     ],
   },
   hero: {
