@@ -1,37 +1,38 @@
 # Barakaldo Makers · web
 
 Web de la Asociación Tecnológica Barakaldo Makers, en castellano (`/es/`) y euskera (`/eu/`).
-Next.js 16 exportado como sitio estático y publicado en GitHub Pages.
+Next.js 16 exportado como sitio estático. Dominio final: **https://barakaldomakers.org**.
+El repositorio de GitHub es la copia de seguridad del código.
 
-## Publicar en GitHub Pages
+## Publicar en barakaldomakers.org
 
-1. Crea un repositorio en GitHub (por ejemplo `Barakaldo-Makers/web`) y sube este proyecto:
+```bash
+npm ci
+npm run build      # genera la web completa en out/
+```
 
-   ```bash
-   git remote add origin https://github.com/Barakaldo-Makers/web.git
-   git push -u origin main
-   ```
+`out/` son archivos estáticos (HTML, CSS, JS, imágenes): se suben tal cual a la raíz del
+alojamiento, sin PHP ni base de datos. Ya va preparada para `https://barakaldomakers.org`
+(canonical, sitemap, Open Graph).
 
-2. En el repositorio: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+> **Antes de sustituir la web WordPress:** "Sobre nosotros" y "Fotos del montaje" (Microscopio
+> OpenFlexure y Mini CNC-PCB) enlazan a páginas de la web antigua. Al cambiar el dominio
+> dejarán de existir: hay que migrar ese contenido o cambiar esos enlaces en
+> `src/lib/dictionaries.ts` (constante `LEGACY`).
 
-3. Cada push a `main` compila y publica la web (`.github/workflows/deploy.yml`).
-   La primera vez tarda 2-3 minutos. La dirección aparece en la pestaña **Actions** y en
-   **Settings → Pages**.
+## Copia en GitHub
 
-La ruta base se calcula sola:
+```bash
+git remote add origin https://github.com/<cuenta>/<repo>.git
+git push -u origin main
+```
 
-| Repositorio | Dirección |
-|---|---|
-| `Barakaldo-Makers/web` | `https://barakaldo-makers.github.io/web/` |
-| `Barakaldo-Makers/barakaldo-makers.github.io` | `https://barakaldo-makers.github.io/` |
-| Con dominio propio | `https://www.barakaldomakers.org/` |
+## Vista previa en GitHub Pages (opcional)
 
-### Dominio propio (opcional)
-
-Para servirla en `www.barakaldomakers.org`, añade el dominio en **Settings → Pages → Custom domain**
-y crea en el DNS un registro `CNAME` de `www` a `barakaldo-makers.github.io`.
-Mientras el dominio apunte a la web WordPress antigua, no lo cambies: varios enlaces
-("Fotos del montaje", "Sobre nosotros", proyectos 5 y 7) todavía llevan allí.
+El workflow `.github/workflows/deploy.yml` publica una vista previa en
+`https://<cuenta>.github.io/<repo>/`. No se lanza solo con cada push: actívalo en
+**Settings → Pages → Source: GitHub Actions** y ejecútalo desde **Actions → Run workflow**.
+La ruta base se ajusta sola.
 
 ## Trabajar en local
 
@@ -48,8 +49,7 @@ npm run build      # genera la web estática en out/
 ## Dónde se cambia cada cosa
 
 - **Textos** (los dos idiomas): `src/lib/dictionaries.ts`
-- **NIF de la asociación**: `links.nif` en el mismo archivo. Mientras esté vacío, los textos
-  legales no lo mencionan.
+- **NIF de la asociación**: `links.nif` en el mismo archivo (aparece en los textos legales).
 - **Fotos**: `public/images/`
 - **Formulario de contacto**: ahora abre el programa de correo. Para recibir los mensajes
   sin depender de eso, crea un formulario en formspree.io y sigue el `TODO` de

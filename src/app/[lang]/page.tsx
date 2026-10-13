@@ -202,11 +202,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                     <h3 className="font-display text-step-3 font-black leading-tight">{project.name}</h3>
                     <p className="mt-3 text-step-1 font-medium leading-snug">{project.summary}</p>
                     <p className="mt-4 max-w-[60ch] leading-relaxed text-muted-foreground">{project.body}</p>
-                    <div className="mt-6">
-                      <ExternalLink href={project.href} newTab={t.ui.newTab}>
-                        {project.linkLabel}
-                      </ExternalLink>
-                    </div>
+                    {project.href && (
+                      <div className="mt-6">
+                        <ExternalLink href={project.href} newTab={t.ui.newTab}>
+                          {project.linkLabel}
+                        </ExternalLink>
+                      </div>
+                    )}
                   </article>
                   <div className="relative aspect-[4/3] overflow-hidden border border-foreground/20 bg-card lg:col-span-4">
                     {project.image ? (

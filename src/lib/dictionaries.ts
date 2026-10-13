@@ -9,8 +9,8 @@ const LEGACY = "https://barakaldomakers.org"
 
 export const links = {
   email: "barakaldomakers@gmail.com",
-  /** NIF de la asociación. Mientras esté vacío, los textos legales no lo mencionan. */
-  nif: "",
+  /** NIF (CIF) de la asociación; aparece en el aviso legal y la política de privacidad. Vacío = no se menciona. */
+  nif: "G01787118",
   formacion: "https://formacion.barakaldomakers.org",
   sobreNosotros: `${LEGACY}/sobre-nosotros/`,
   social: {
@@ -34,8 +34,9 @@ type Project = {
   name: string
   summary: string
   body: string
-  href: string
-  linkLabel: string
+  /** Sin enlace mientras el proyecto no tenga una página propia */
+  href?: string
+  linkLabel?: string
 }
 
 type ActivityItem = {
@@ -51,6 +52,7 @@ const projectLinks = {
   meshtastic: "https://meshtastic.org",
   openflexure: `${LEGACY}/microscopio-openflexure/`,
   minicnc: `${LEGACY}/mini-cnc-pcb/`,
+  sonometro: "https://github.com/Barakaldo-Makers/sonometro",
 }
 
 const es = {
@@ -170,8 +172,6 @@ const es = {
         name: "Velutinas BRKMK",
         summary: "Trampas selectivas para avispa asiática con filamento reciclado.",
         body: "Diseño propio para la captura selectiva de avispa asiática (Vespa velutina). Fabricadas con filamento reciclado de botellas PET. Distribuidas a voluntarios de la comarca desde 2024.",
-        href: `${LEGACY}/velutinas-brkmk/`,
-        linkLabel: "Sobre Velutinas BRKMK",
       },
       {
         code: "PRY-06",
@@ -182,8 +182,8 @@ const es = {
         name: "Sonómetro Digital",
         summary: "Sensor de ruido ambiental integrado con la red CanAIRIO.",
         body: "Dispositivo de medición de nivel sonoro instalado en colegios y espacios públicos. Forma parte de la red CanAIRIO, aportando datos de contaminación acústica en tiempo real.",
-        href: projectLinks.canairio,
-        linkLabel: "Ver CanAIRIO",
+        href: projectLinks.sonometro,
+        linkLabel: "Código en GitHub",
       },
       {
         code: "PRY-07",
@@ -194,8 +194,6 @@ const es = {
         name: "Sistema de Reciclaje de Filamento",
         summary: "Conversión de botellas PET en filamento 3D para impresoras.",
         body: "Proceso de transformación de botellas PET en filamento para impresión 3D. Cerramos el ciclo: del residuo al material de fabricación en nuestro propio taller.",
-        href: `${LEGACY}/reciclaje-filamento/`,
-        linkLabel: "Sobre el reciclaje",
       },
     ] satisfies Project[] as Project[],
     visualAlt: {
@@ -546,8 +544,6 @@ const eu: Dictionary = {
         name: "Velutinas BRKMK",
         summary: "Liztor asiarrarentzako tranpa selektiboak, birziklatutako filamentuarekin.",
         body: "Liztor asiarra (Vespa velutina) modu selektiboan harrapatzeko geuk diseinatutako tranpa. PET botiletatik birziklatutako filamentuarekin fabrikatzen dugu, eta 2024tik eskualdeko boluntarioei banatzen dizkiegu.",
-        href: `${LEGACY}/velutinas-brkmk/`,
-        linkLabel: "Velutinas BRKMK-ri buruz",
       },
       {
         code: "PRY-06",
@@ -558,8 +554,8 @@ const eu: Dictionary = {
         name: "Sonometro digitala",
         summary: "CanAIRIO sarean integratutako ingurumen-zarataren neurgailua.",
         body: "Soinu-maila neurtzeko gailua, ikastetxeetan eta espazio publikoetan instalatua. CanAIRIO sarearen parte da, eta kutsadura akustikoaren datuak ematen ditu denbora errealean.",
-        href: projectLinks.canairio,
-        linkLabel: "Ikusi CanAIRIO",
+        href: projectLinks.sonometro,
+        linkLabel: "Kodea GitHub-en",
       },
       {
         code: "PRY-07",
@@ -570,8 +566,6 @@ const eu: Dictionary = {
         name: "Filamentua birziklatzeko sistema",
         summary: "PET botilak 3D inprimagailuetarako filamentu bihurtzen ditugu.",
         body: "PET botilak 3D inprimaketarako filamentu bihurtzeko prozesua. Zikloa ixten dugu: hondakinetik fabrikazio-materialera, gure tailerrean bertan.",
-        href: `${LEGACY}/reciclaje-filamento/`,
-        linkLabel: "Birziklapenari buruz",
       },
     ],
     visualAlt: {

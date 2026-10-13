@@ -17,6 +17,12 @@ function fill(text: string, lang: "es" | "eu") {
   return text.split("{email}").join(links.email).split("{nif}").join(nif)
 }
 
+/** Corta en la última palabra completa que quepa */
+function excerpt(text: string, max: number) {
+  if (text.length <= max) return text
+  return `${text.slice(0, text.lastIndexOf(" ", max - 1)).replace(/[,;:.]$/, "")}…`
+}
+
 export async function legalMetadata(params: Promise<{ lang: string }>, key: LegalKey): Promise<Metadata> {
   const { lang } = await params
   if (!isLocale(lang)) return {}
@@ -24,7 +30,7 @@ export async function legalMetadata(params: Promise<{ lang: string }>, key: Lega
   const title = `${doc.title} · Barakaldo Makers`
   return {
     title,
-    description: fill(doc.sections[0].body, lang).slice(0, 155),
+    description: excerpt(fill(doc.sections[0].body, lang), 155),
     alternates: pageAlternates(lang, paths[key]),
     openGraph: { title, url: `/${lang}${paths[key]}/` },
   }

@@ -1,10 +1,9 @@
-# Publica la web en GitHub Pages en cada push a main.
-# Requisito único: Settings → Pages → Source: "GitHub Actions".
-name: Desplegar en GitHub Pages
+# Vista previa opcional en GitHub Pages. Solo se lanza a mano (pestaña Actions →
+# "Run workflow"), así un push de la copia de seguridad no falla si Pages está desactivado.
+# Requisito: Settings → Pages → Source: "GitHub Actions".
+name: Vista previa en GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
