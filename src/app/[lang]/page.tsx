@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowDown, ArrowUpRight, Mail } from "lucide-react"
+import Link from "next/link"
+import { ArrowDown, ArrowRight, ArrowUpRight, Mail } from "lucide-react"
 import { ContactForm } from "@/components/site/contact-form"
 import { ProjectVisual } from "@/components/site/project-visuals"
 import { Reveal } from "@/components/site/reveal"
@@ -48,6 +49,21 @@ function ExternalLink({
       />
       <span className="sr-only">{newTab}</span>
     </a>
+  )
+}
+
+function InternalLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className={`group inline-flex min-h-11 items-center gap-2 font-medium underline decoration-foreground/30 decoration-2 underline-offset-[6px] transition-[text-decoration-color] duration-200 ${hoverOnly}:hover:decoration-accent`}
+    >
+      {children}
+      <ArrowRight
+        aria-hidden="true"
+        className={`size-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ${hoverOnly}:group-hover:translate-x-0.5`}
+      />
+    </Link>
   )
 }
 
@@ -204,9 +220,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                     <p className="mt-4 max-w-[60ch] leading-relaxed text-muted-foreground">{project.body}</p>
                     {project.href && (
                       <div className="mt-6">
-                        <ExternalLink href={project.href} newTab={t.ui.newTab}>
-                          {project.linkLabel}
-                        </ExternalLink>
+                        {project.href.startsWith("/") ? (
+                          <InternalLink href={`/${lang}${project.href}/`}>{project.linkLabel}</InternalLink>
+                        ) : (
+                          <ExternalLink href={project.href} newTab={t.ui.newTab}>
+                            {project.linkLabel}
+                          </ExternalLink>
+                        )}
                       </div>
                     )}
                   </article>
@@ -258,9 +278,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 ))}
               </div>
               <div className="mt-8">
-                <ExternalLink href={links.sobreNosotros} newTab={t.ui.newTab}>
-                  {t.about.link}
-                </ExternalLink>
+                <InternalLink href={`/${lang}${links.sobreNosotros}/`}>{t.about.link}</InternalLink>
               </div>
             </Reveal>
             <Reveal index={1} className="lg:col-span-5 lg:col-start-8 lg:self-end">

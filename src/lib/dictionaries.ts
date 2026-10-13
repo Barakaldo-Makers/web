@@ -5,14 +5,12 @@ export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value)
 }
 
-const LEGACY = "https://barakaldomakers.org"
-
 export const links = {
   email: "barakaldomakers@gmail.com",
   /** NIF (CIF) de la asociación; aparece en el aviso legal y la política de privacidad. Vacío = no se menciona. */
   nif: "G01787118",
   formacion: "https://formacion.barakaldomakers.org",
-  sobreNosotros: `${LEGACY}/sobre-nosotros/`,
+  sobreNosotros: "/sobre-nosotros",
   social: {
     telegram: "https://t.me/barakaldomakers",
     facebook: "https://www.facebook.com/Barakaldo-Makers-102662331480029",
@@ -50,8 +48,8 @@ type ActivityItem = {
 const projectLinks = {
   canairio: "https://canair.io",
   meshtastic: "https://meshtastic.org",
-  openflexure: `${LEGACY}/microscopio-openflexure/`,
-  minicnc: `${LEGACY}/mini-cnc-pcb/`,
+  openflexure: "/proyectos/openflexure",
+  minicnc: "/proyectos/mini-cnc-pcb",
   sonometro: "https://github.com/Barakaldo-Makers/sonometro",
 }
 
@@ -319,6 +317,49 @@ const es = {
       { href: "/cookies", label: "Política de cookies" },
     ],
     social: "Redes",
+  },
+  aboutPage: {
+    eyebrow: "Quiénes somos",
+    title: "Sobre nosotros",
+    body: [
+      "Barakaldo Makers nace con la vocación de ser un espacio abierto de innovación ciudadana: un lugar para pensar la tecnología y para usarla de forma creativa y colaborativa.",
+      "Hacemos tecnología cotidiana, de dificultad baja, y tecnología disruptiva, de dificultad elevada. Siempre con vocación open source, para que cualquiera, en cualquier lugar, pueda replicarla gracias a licencias Creative Commons o similares.",
+      "Queremos contagiar ese dinamismo a la ciudadanía. En un mundo que cambia deprisa, BRKMK quiere aportar su experiencia a favor del empleo con formación de calidad, de presente y de futuro, que ayude a crear empleo sociotecnológico. Por ejemplo, cursos de fabricación aditiva de 20 a 40 horas o cursos tipo máster, más complejos, de unas 200 horas.",
+      "También queremos ser un observatorio de necesidades masivas en emergencias, como lo fue la COVID-19 o como puede serlo mañana una crisis climática o humanitaria. Buscamos soluciones simples, efectivas y rápidas de desarrollar que alivien la situación en primera línea: pantallas de protección facial, salvaorejas para mascarillas, abrepuertas sin contacto, o colaboraciones más complejas en proyectos de respiradores o de máquinas ECMO de oxigenación extracorpórea.",
+      "Barakaldo Makers está abierta a cualquier persona, sin restricciones geográficas, y trabaja a escala local, estatal e internacional.",
+      "Somos una asociación tecnológica sin ánimo de lucro, registrada en el Gobierno Vasco el 11 de junio de 2020.",
+    ],
+    cta: "¿Te apuntas? Escríbenos",
+  },
+  projectPages: {
+    back: "Todos los proyectos",
+    logTitle: "Diario de montaje",
+    photoCount: "fotos",
+    original: "Proyecto original",
+    items: {
+      openflexure: [
+        "La estructura de la platina, recién salida de la impresora.",
+        "Platina y engranajes del enfoque: las primeras piezas montadas.",
+        "Cableado de la placa que controla los motores, dentro de su caja.",
+        "La electrónica de control, ya cableada en la caja impresa.",
+        "El microscopio montado, con los motores paso a paso y la caja de control al lado.",
+        "Detalle de los motores que mueven la platina en los tres ejes.",
+        "Primera prueba con la iluminación encendida y la Raspberry Pi en la base.",
+        "El microscopio terminado, sobre la base que guarda la Raspberry Pi.",
+        "El software de OpenFlexure mostrando en directo la imagen de la cámara.",
+        "Imagen de ejemplo de un OpenFlexure: células teñidas, con escalas de 200 µm y 50 µm.",
+      ],
+      "mini-cnc-pcb": [
+        "Diseño 3D del soporte del cabezal, listo para imprimir.",
+        "Todas las piezas impresas, en gris y verde, antes del montaje.",
+        "El bastidor de perfiles de aluminio con el primer eje montado.",
+        "Detalle del motor del husillo (en rojo) y su soporte impreso.",
+        "El cabezal en su sitio, con el motor del husillo y su regulador de velocidad.",
+        "Primer plano del cabezal con la fresa puesta.",
+        "La fresadora terminada, con las correas de los ejes tensadas.",
+        "Vista frontal de la máquina completa.",
+      ],
+    },
   },
   notFound: {
     title: "Esta página no existe",
@@ -691,6 +732,49 @@ const eu: Dictionary = {
       { href: "/cookies", label: "Cookie-politika" },
     ],
     social: "Sareak",
+  },
+  aboutPage: {
+    eyebrow: "Nor gara",
+    title: "Guri buruz",
+    body: [
+      "Barakaldo Makers herritarren berrikuntzarako gune ireki bat izateko asmoz jaio zen: teknologiari buruz hausnartzeko eta hura modu sortzaile eta lankidetzan erabiltzeko lekua.",
+      "Eguneroko teknologia egiten dugu, zailtasun txikikoa, eta teknologia disruptiboa, zailtasun handikoa. Beti kode irekiko izaerarekin, edonork, edonon, errepikatu ahal izan dezan Creative Commons edo antzeko lizentziei esker.",
+      "Dinamismo hori herritarrei kutsatu nahi diegu. Azkar aldatzen ari den mundu honetan, BRKMKk bere esperientzia enpleguaren alde jarri nahi du, oraingo eta etorkizuneko kalitatezko prestakuntzarekin, enplegu sozioteknologikoa sortzen lagun dezan. Adibidez, fabrikazio gehigarriko ikastaroak, 20 eta 40 ordu artekoak, edo master motako ikastaro konplexuagoak, 200 ordu ingurukoak.",
+      "Larrialdietako behar masiboen behatoki bat ere izan nahi dugu, COVID-19a izan zen bezala edo bihar krisi klimatiko edo humanitario bat izan daitekeen bezala. Lehen lerroan egoera arintzeko irtenbide sinpleak, eraginkorrak eta azkar garatzekoak bilatzen ditugu: aurpegia babesteko pantailak, maskarentzako belarri-babesak, ukitu gabe ateak irekitzeko gailuak, edo lankidetza konplexuagoak arnasgailuen edo gorputzez kanpoko oxigenaziorako ECMO makinen proiektuetan.",
+      "Barakaldo Makers edonori irekita dago, muga geografikorik gabe, eta tokian, estatuan eta nazioartean egiten du lan.",
+      "Irabazi asmorik gabeko elkarte teknologikoa gara, Eusko Jaurlaritzan 2020ko ekainaren 11n erregistratua.",
+    ],
+    cta: "Bat egin nahi duzu? Idatzi iezaguzu",
+  },
+  projectPages: {
+    back: "Proiektu guztiak",
+    logTitle: "Muntaketa-egunerokoa",
+    photoCount: "argazki",
+    original: "Jatorrizko proiektua",
+    items: {
+      openflexure: [
+        "Platinaren egitura, inprimagailutik atera berria.",
+        "Platina eta fokatzeko engranajeak: muntatutako lehen piezak.",
+        "Motorrak kontrolatzen dituen plakaren kableatua, bere kaxaren barruan.",
+        "Kontrol-elektronika, kaxa inprimatuan kableatuta.",
+        "Mikroskopioa muntatuta, urrats-motorrekin eta kontrol-kaxa ondoan.",
+        "Platina hiru ardatzetan mugitzen duten motorren xehetasuna.",
+        "Lehen proba, argiztapena piztuta eta Raspberry Pi-a oinarrian.",
+        "Mikroskopioa amaituta, Raspberry Pi-a gordetzen duen oinarriaren gainean.",
+        "OpenFlexure softwarea, kameraren irudia zuzenean erakusten.",
+        "OpenFlexure batekin hartutako adibide-irudia: zelula tindatuak, 200 µm eta 50 µm-ko eskalekin.",
+      ],
+      "mini-cnc-pcb": [
+        "Buruaren euskarriaren 3D diseinua, inprimatzeko prest.",
+        "Inprimatutako pieza guztiak, grisak eta berdeak, muntatu aurretik.",
+        "Aluminiozko profilen markoa, lehen ardatza muntatuta.",
+        "Ardatz nagusiko motorraren xehetasuna (gorria) eta haren euskarri inprimatua.",
+        "Burua bere lekuan, ardatz nagusiko motorrarekin eta abiadura-erreguladorearekin.",
+        "Buruaren lehen planoa, fresa jarrita.",
+        "Fresatzeko makina amaituta, ardatzen uhalak tenkatuta.",
+        "Makina osoaren aurrealdeko ikuspegia.",
+      ],
+    },
   },
   notFound: {
     title: "Orri hau ez dago",

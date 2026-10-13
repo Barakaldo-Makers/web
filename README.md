@@ -15,16 +15,19 @@ npm run build      # genera la web completa en out/
 alojamiento, sin PHP ni base de datos. Ya va preparada para `https://barakaldomakers.org`
 (canonical, sitemap, Open Graph).
 
-> **Antes de sustituir la web WordPress:** "Sobre nosotros" y "Fotos del montaje" (Microscopio
-> OpenFlexure y Mini CNC-PCB) enlazan a páginas de la web antigua. Al cambiar el dominio
-> dejarán de existir: hay que migrar ese contenido o cambiar esos enlaces en
-> `src/lib/dictionaries.ts` (constante `LEGACY`).
+El contenido de la web WordPress antigua ya está migrado ("Sobre nosotros" y los diarios de
+montaje del Microscopio OpenFlexure y la Mini CNC-PCB): la web nueva no enlaza a ella.
+Las URL antiguas (`/sobre-nosotros/`, `/microscopio-openflexure/`, `/mini-cnc-pcb/`) siguen
+funcionando: `public/` tiene una página en cada una que redirige a su versión nueva.
 
 ## Copia en GitHub
 
+El código está en https://github.com/Barakaldo-Makers/web (privado). Para guardar cambios:
+
 ```bash
-git remote add origin https://github.com/<cuenta>/<repo>.git
-git push -u origin main
+git add -A
+git commit -m "Qué has cambiado"
+git push
 ```
 
 ## Vista previa en GitHub Pages (opcional)
@@ -50,7 +53,8 @@ npm run build      # genera la web estática en out/
 
 - **Textos** (los dos idiomas): `src/lib/dictionaries.ts`
 - **NIF de la asociación**: `links.nif` en el mismo archivo (aparece en los textos legales).
-- **Fotos**: `public/images/`
+- **Fotos**: `public/images/`. Las de los diarios de montaje, en `public/images/proyectos/`
+  y listadas en `src/lib/project-photos.ts` (sus pies de foto, en `dictionaries.ts`).
 - **Formulario de contacto**: ahora abre el programa de correo. Para recibir los mensajes
   sin depender de eso, crea un formulario en formspree.io y sigue el `TODO` de
   `src/components/site/contact-form.tsx`.
