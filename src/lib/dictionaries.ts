@@ -83,7 +83,7 @@ const es = {
     items: [
       { src: "/images/artemis.jpg", alt: "Mesa con láser, grid y cohete modelo" },
       { src: "/images/ArtemisII.jpg", alt: "Detalle del proyecto Artemis" },
-      { src: "/images/velutinas.jpg", alt: "Exposición sobre el ecosistema marino y las velutinas" },
+      { src: "/images/velutinas.jpg", alt: "Exposición sobre las velutinas" },
       { src: "/images/catenarias.jpg", alt: "Catenarias y estructuras del taller" },
       { src: "/images/dispositivos.jpg", alt: "Exhibición de proyectos maker en feria" },
       { src: "/images/dispositivos_2.jpg", alt: "Stand con impresora 3D Prusa i3 y robot oruga" },
@@ -498,7 +498,7 @@ const eu: Dictionary = {
     items: [
       { src: "/images/artemis.jpg", alt: "Mahaia laserrarekin, saretarekin eta suziri-eredu batekin" },
       { src: "/images/ArtemisII.jpg", alt: "Artemis proiektuaren xehetasuna" },
-      { src: "/images/velutinas.jpg", alt: "Itsas ekosistemari eta liztor asiarrari buruzko erakusketa" },
+      { src: "/images/velutinas.jpg", alt: "Liztor asiarrari buruzko erakusketa" },
       { src: "/images/catenarias.jpg", alt: "Tailerreko katenariak eta egiturak" },
       { src: "/images/dispositivos.jpg", alt: "Maker proiektuen erakusketa azoka batean" },
       { src: "/images/dispositivos_2.jpg", alt: "Prusa i3 inprimagailua eta beldar-robota dituen standa" },
