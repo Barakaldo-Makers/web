@@ -9,7 +9,6 @@ export const links = {
   email: "barakaldomakers@gmail.com",
   /** NIF (CIF) de la asociación; aparece en el aviso legal y la política de privacidad. Vacío = no se menciona. */
   nif: "G01787118",
-  formacion: "https://formacion.barakaldomakers.org",
   sobreNosotros: "/sobre-nosotros",
   social: {
     telegram: "https://t.me/barakaldomakers",
@@ -21,7 +20,7 @@ export const links = {
 }
 
 
-export type ProjectVisual = "canairio" | "meshtastic" | "openflexure" | "minicnc"
+export type ProjectVisual = "canairio" | "meshtastic" | "openflexure" | "minicnc" | "hizkera"
 
 type Project = {
   code: string
@@ -42,6 +41,8 @@ type ActivityItem = {
   title: string
   image?: string
   imageAlt?: string
+  /** Autoría de la foto cuando no es nuestra */
+  imageCredit?: string
   body: string
 }
 
@@ -51,6 +52,7 @@ const projectLinks = {
   openflexure: "/proyectos/openflexure",
   minicnc: "/proyectos/mini-cnc-pcb",
   sonometro: "https://github.com/Barakaldo-Makers/sonometro",
+  hizkera: "https://github.com/Barakaldo-Makers/hizkera-basic",
 }
 
 const es = {
@@ -72,7 +74,6 @@ const es = {
     { href: "#proyectos", label: "Proyectos" },
     { href: "#quienes-somos", label: "Quiénes somos" },
     { href: "#actividades", label: "Actividades" },
-    { href: "#formacion", label: "Formación" },
     { href: "#contacto", label: "Contacto" },
     { href: "/galeria", label: "Galería" },
   ],
@@ -92,6 +93,8 @@ const es = {
       { src: "/images/steam_gunea2.jpg", alt: "Actividad STEAM GUNEA con familias" },
       { src: "/images/canairio_No2.jpg", alt: "Comparación entre tubos pasivos y medición de NO₂ con CanAIRIO" },
       { src: "/images/triturando.jpg", alt: "Triturando plástico para reciclaje" },
+      { src: "/images/hizkera-premio.jpg", alt: "Alberto Martínez recoge en el escenario, en nombre de Roberto Fernández, el cheque de 9.000 euros del premio a Hizkera" },
+      { src: "/images/retos-innovacion-2022.jpg", alt: "Foto de grupo de las personas premiadas en Barakaldo: Retos Innovación Abierta 2022" },
     ],
   },
   hero: {
@@ -104,8 +107,8 @@ const es = {
     facts: [
       { value: "10+", label: "Eventos" },
       { value: "300+", label: "Participantes" },
-      { value: "7", label: "Proyectos" },
-      { value: "6.000€", label: "Gestionados" },
+      { value: "8", label: "Proyectos" },
+      { value: "6.000€", label: "Gestionados al año" },
     ],
     specCode: "PRY-03 · FICHA",
     specName: "Microscopio OpenFlexure",
@@ -193,12 +196,23 @@ const es = {
         summary: "Conversión de botellas PET en filamento 3D para impresoras.",
         body: "Proceso de transformación de botellas PET en filamento para impresión 3D. Cerramos el ciclo: del residuo al material de fabricación en nuestro propio taller.",
       },
+      {
+        code: "PRY-08",
+        visual: "hizkera",
+        tag: "Cuidados · Radar · LoRa",
+        name: "Hizkera",
+        summary: "Un aviso temprano para personas mayores que viven solas, premiado en 2022.",
+        body: "La idea es de Roberto Fernández, nuestro presidente. Un radar de 60 GHz nota si en casa hay movimiento o respiración, y un sensor de CO₂ completa la lectura. Si alguien se cae, o se va y no vuelve, el aviso sale por radio LoRa, sin wifi. El proyecto está parado, pero el código está en GitHub para quien quiera seguir con él.",
+        href: projectLinks.hizkera,
+        linkLabel: "Código en GitHub",
+      },
     ] satisfies Project[] as Project[],
     visualAlt: {
       canairio: "Esquema de una red de sensores de aire repartidos por un mapa",
       meshtastic: "Esquema de nodos de radio conectados entre sí formando una malla",
       openflexure: "Microscopio OpenFlexure impreso en 3D, sostenido en la mano",
       minicnc: "Mini fresadora CNC con estructura de perfiles de aluminio y varillas",
+      hizkera: "Plano de una vivienda: un radar en la esquina del salón detecta a una persona caída y envía el aviso por radio LoRa a un receptor",
     } as Record<ProjectVisual, string>,
   },
   audiences: {
@@ -225,6 +239,7 @@ const es = {
     body: [
       "Nos inscribimos como asociación el 11 de junio de 2020, en plena pandemia. Las primeras piezas que salieron de nuestras impresoras fueron pantallas faciales, salvaorejas para mascarillas y abrepuertas sin contacto.",
       "Desde entonces seguimos igual. Con las manos, en abierto y sin fronteras: trabajamos en proyectos locales, estatales e internacionales.",
+      "En 2022 ganamos el premio Barakaldo en Acción con Hizkera, un aviso para personas mayores que viven solas que ideó nuestro presidente, Roberto Fernández. También participamos en el grupo motor del Laboratorio Urbano Barakaldo, que impulsa Inguralde.",
     ],
     facts: [
       { label: "11·06·2020", value: "Inscripción en el registro de asociaciones del Gobierno Vasco" },
@@ -282,16 +297,25 @@ const es = {
         title: "Innpulso Emprende",
         body: "Participación en la 7ª edición con el Ministerio de Ciencia, Innovación y Universidades.",
       },
+      {
+        year: "2023",
+        title: "Laboratorio Urbano Barakaldo",
+        image: "/images/laboratorio-urbano-2023.jpg",
+        imageAlt: "Sesión del grupo motor del Laboratorio Urbano Barakaldo: una ponente presenta ante una pantalla y el resto escucha sentado en círculo",
+        imageCredit: "Foto: Universidad de Deusto",
+        body: "Participamos en su grupo motor, que impulsa Inguralde y dinamiza Deusto Emprende. En el sexto encuentro, el 16 de mayo, presentamos Hizkera junto a los demás proyectos premiados.",
+      },
+      {
+        year: "2022",
+        title: "Premio Barakaldo en Acción",
+        image: "/images/hizkera-premio.jpg",
+        imageAlt: "Alberto Martínez recoge en el escenario, en nombre de Roberto Fernández, el cheque de 9.000 euros del premio a Hizkera",
+        body: "Hizkera, la idea de nuestro presidente Roberto Fernández, ganó en la primera edición de Barakaldo: Retos Innovación Abierta, el concurso del Ayuntamiento con Deusto e Inguralde. Roberto no pudo ir a la entrega, el 24 de junio en el centro cívico Clara Campoamor, y Alberto Martínez recogió el premio en su nombre.",
+      },
     ] satisfies ActivityItem[] as ActivityItem[],
   },
-  training: {
-    eyebrow: "05 · Formación",
-    title: "Talleres y cursos",
-    body: "Damos talleres prácticos de electrónica, sensores e impresión 3D, y hemos impartido un curso de programación en Python. El calendario y las inscripciones están en nuestra web de formación.",
-    link: "Ver talleres BRKMK",
-  },
   contact: {
-    eyebrow: "06 · Contacto",
+    eyebrow: "05 · Contacto",
     title: "Trae tu proyecto. O tus ganas.",
     body: "¿Quieres hacerte socio, proponer un taller o colaborar en un proyecto? Escríbenos y te contestamos. Si prefieres algo más rápido, entra en el grupo de Telegram.",
     form: {
@@ -487,7 +511,6 @@ const eu: Dictionary = {
     { href: "#proyectos", label: "Proiektuak" },
     { href: "#quienes-somos", label: "Nor gara" },
     { href: "#actividades", label: "Jarduerak" },
-    { href: "#formacion", label: "Prestakuntza" },
     { href: "#contacto", label: "Harremanak" },
     { href: "/galeria", label: "Galeria" },
   ],
@@ -507,6 +530,8 @@ const eu: Dictionary = {
       { src: "/images/steam_gunea2.jpg", alt: "STEAM GUNEA jarduera familiekin" },
       { src: "/images/canairio_No2.jpg", alt: "Hodi pasiboen eta CanAIRIOrekin egindako NO₂ neurketaren arteko konparazioa" },
       { src: "/images/triturando.jpg", alt: "Plastikoa birziklatzeko txikitzen" },
+      { src: "/images/hizkera-premio.jpg", alt: "Alberto Martínezek agertokian jasotzen du, Roberto Fernándezen izenean, Hizkerari emandako sariaren 9.000 euroko txekea" },
+      { src: "/images/retos-innovacion-2022.jpg", alt: "Barakaldo: Retos Innovación Abierta 2022 lehiaketako sarituen talde-argazkia" },
     ],
   },
   hero: {
@@ -519,8 +544,8 @@ const eu: Dictionary = {
     facts: [
       { value: "10+", label: "Ekitaldi" },
       { value: "300+", label: "Parte-hartzaile" },
-      { value: "7", label: "Proiektu" },
-      { value: "6.000€", label: "Kudeatua" },
+      { value: "8", label: "Proiektu" },
+      { value: "6.000€", label: "Urtean kudeatua" },
     ],
     specCode: "PRY-03 · FITXA",
     specName: "OpenFlexure mikroskopioa",
@@ -608,12 +633,23 @@ const eu: Dictionary = {
         summary: "PET botilak 3D inprimagailuetarako filamentu bihurtzen ditugu.",
         body: "PET botilak 3D inprimaketarako filamentu bihurtzeko prozesua. Zikloa ixten dugu: hondakinetik fabrikazio-materialera, gure tailerrean bertan.",
       },
+      {
+        code: "PRY-08",
+        visual: "hizkera",
+        tag: "Zaintza · Radarra · LoRa",
+        name: "Hizkera",
+        summary: "Bakarrik bizi diren adinekoentzako abisu goiztiarra, 2022an saritua.",
+        body: "Roberto Fernández gure presidentearen ideia da. 60 GHz-ko radar batek etxean mugimendurik edo arnasketarik dagoen antzematen du, eta CO₂ sentsore batek osatzen du irakurketa. Norbait erortzen bada, edo joan eta itzultzen ez bada, abisua LoRa irratiz bidaltzen da, wifirik gabe. Proiektua geldirik dago, baina kodea GitHub-en dago, jarraitu nahi duenarentzat.",
+        href: projectLinks.hizkera,
+        linkLabel: "Kodea GitHub-en",
+      },
     ],
     visualAlt: {
       canairio: "Mapa batean banatutako aire-sentsoreen sarearen eskema",
       meshtastic: "Elkarrekin konektatutako irrati-nodoen sare-eskema",
       openflexure: "3Dn inprimatutako OpenFlexure mikroskopioa, eskuan",
       minicnc: "Aluminiozko profilez eta hagaxkez egindako CNC fresatzeko makina txikia",
+      hizkera: "Etxebizitza baten planoa: egongelako izkinako radar batek eroritako pertsona bat antzematen du eta abisua LoRa irratiz bidaltzen dio hargailu bati",
     },
   },
   audiences: {
@@ -640,6 +676,7 @@ const eu: Dictionary = {
     body: [
       "2020ko ekainaren 11n erregistratu ginen elkarte gisa, pandemia betean. Gure inprimagailuetatik ateratako lehen piezak babes-pantailak, maskarentzako belarri-babesak eta ukitu gabe ateak irekitzeko gailuak izan ziren.",
       "Ordutik, berdin jarraitzen dugu. Eskuekin, modu irekian eta mugarik gabe: tokiko, estatuko eta nazioarteko proiektuetan lan egiten dugu.",
+      "2022an «Barakaldo en Acción» saria irabazi genuen Hizkerarekin, Roberto Fernández gure presidenteak bakarrik bizi diren adinekoentzat asmatutako abisu-sistemarekin. Inguraldek bultzatzen duen Barakaldo Hiri Laborategiaren talde eragilean ere parte hartzen dugu.",
     ],
     facts: [
       { label: "2020·06·11", value: "Eusko Jaurlaritzaren elkarteen erregistroan inskribatua" },
@@ -697,16 +734,25 @@ const eu: Dictionary = {
         title: "Innpulso Emprende",
         body: "7. edizioan parte hartu genuen, Zientzia, Berrikuntza eta Unibertsitate Ministerioarekin.",
       },
+      {
+        year: "2023",
+        title: "Barakaldo Hiri Laborategia",
+        image: "/images/laboratorio-urbano-2023.jpg",
+        imageAlt: "Barakaldo Hiri Laborategiaren talde eragilearen saioa: hizlari bat pantailaren aurrean, eta gainerakoak zirkuluan eserita entzuten",
+        imageCredit: "Argazkia: Deustuko Unibertsitatea",
+        body: "Bere talde eragilean parte hartzen dugu. Inguraldek bultzatzen du eta Deusto Emprendek dinamizatzen. Seigarren topaketan, maiatzaren 16an, Hizkera aurkeztu genuen saritutako beste proiektuekin batera.",
+      },
+      {
+        year: "2022",
+        title: "«Barakaldo en Acción» saria",
+        image: "/images/hizkera-premio.jpg",
+        imageAlt: "Alberto Martínezek agertokian jasotzen du, Roberto Fernándezen izenean, Hizkerari emandako sariaren 9.000 euroko txekea",
+        body: "Hizkerak, Roberto Fernández gure presidentearen ideiak, saria irabazi zuen «Barakaldo: Retos Innovación Abierta» lehiaketaren lehen edizioan. Barakaldoko Udalak antolatu zuen, Deustorekin eta Inguralderekin batera. Robertok ezin izan zuen sari-banaketara joan, ekainaren 24an Clara Campoamor gizarte-etxean, eta Alberto Martínezek jaso zuen saria haren izenean.",
+      },
     ] satisfies ActivityItem[] as ActivityItem[],
   },
-  training: {
-    eyebrow: "05 · Prestakuntza",
-    title: "Tailerrak eta ikastaroak",
-    body: "Elektronika, sentsore eta 3D inprimaketako tailer praktikoak ematen ditugu, eta Python programazio-ikastaro bat ere eman dugu. Egutegia eta izen-ematea gure prestakuntza-webgunean daude.",
-    link: "Ikusi BRKMK tailerrak",
-  },
   contact: {
-    eyebrow: "06 · Harremanak",
+    eyebrow: "05 · Harremanak",
     title: "Ekarri zure proiektua. Edo zure gogoa.",
     body: "Bazkide egin, tailer bat proposatu edo proiektu batean lagundu nahi duzu? Idatzi iezaguzu eta erantzungo dizugu. Azkarrago nahi baduzu, sartu Telegrameko taldean.",
     form: {

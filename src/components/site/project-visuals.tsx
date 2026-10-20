@@ -129,9 +129,74 @@ function MeshtasticDiagram({ alt }: { alt: string }) {
   )
 }
 
+/** Plano de una vivienda: el radar cubre el salón, nota a alguien caído y avisa por LoRa */
+function HizkeraDiagram({ alt }: { alt: string }) {
+  const radar = { x: 250, y: 74 }
+  // Ondas de radio saliendo hacia el receptor (±35° a la derecha del radar)
+  const waves = [26, 38, 50].map((r) => {
+    const dx = (r * 0.819).toFixed(1)
+    const dy = (r * 0.574).toFixed(1)
+    return `M${radar.x + +dx} ${radar.y - +dy} A${r} ${r} 0 0 1 ${radar.x + +dx} ${radar.y + +dy}`
+  })
+  return (
+    <svg viewBox="0 0 400 300" role="img" aria-label={alt} className="h-full w-full">
+      <GridBackdrop id="hz" />
+      {/* Zona que cubre el radar: un cuarto de círculo hacia el salón */}
+      <path d="M250 74 L250 184 A110 110 0 0 1 140 74 Z" fill={YELLOW} fillOpacity="0.5" stroke={INK} strokeOpacity="0.4" />
+      <g fill="none" stroke={INK} strokeOpacity="0.3" strokeDasharray="3 4">
+        <path d="M250 114 A40 40 0 0 1 210 74" />
+        <path d="M250 149 A75 75 0 0 1 175 74" />
+      </g>
+      {/* Muebles */}
+      <g fill="none" stroke={INK} strokeOpacity="0.3" strokeWidth="1.5">
+        <rect x="36" y="74" width="44" height="64" />
+        <path d="M36 88 H80" />
+        <rect x="146" y="246" width="84" height="24" />
+        <rect x="36" y="244" width="30" height="26" />
+      </g>
+      {/* Muros: exterior con puerta de entrada, tabiques con puertas */}
+      <g fill="none" stroke={INK} strokeLinecap="square">
+        <path d="M170 284 H24 V60 H264 V284 H206" strokeWidth="4" />
+        <path d="M120 60 V120 M120 146 V220 M120 246 V284 M24 160 H120" strokeWidth="3" />
+      </g>
+      {/* Persona en el suelo; los anillos son la respiración que detecta el radar */}
+      <g fill="none" stroke={INK} strokeOpacity="0.35" strokeDasharray="2 4">
+        <circle cx="195" cy="143" r="22" />
+        <circle cx="195" cy="143" r="32" />
+      </g>
+      <circle cx="176" cy="140" r="6" fill={INK} />
+      <path d="M186 141 L212 146" stroke={INK} strokeWidth="9" strokeLinecap="round" />
+      {/* Radar y aviso por LoRa */}
+      <rect x={radar.x - 7} y={radar.y - 7} width="14" height="14" fill={INK} />
+      <g fill="none" stroke={INK} strokeWidth="1.5">
+        {waves.map((d, i) => (
+          <path key={d} d={d} strokeOpacity={0.75 - i * 0.2} />
+        ))}
+      </g>
+      <path d="M298 74 H334" stroke={INK} strokeWidth="1.5" strokeDasharray="4 4" />
+      <rect x="334" y="62" width="24" height="24" fill={INK} />
+      <text x="346" y="80" textAnchor="middle" fontFamily="var(--font-mono-jb), monospace" fontSize="15" fontWeight="700" fill={YELLOW}>
+        !
+      </text>
+      <g fontFamily="var(--font-mono-jb), monospace" fontSize="10" fill={INK}>
+        <text x="304" y="64">LoRa</text>
+        <text x="334" y="102">RX</text>
+        {/* Escala */}
+        <path d="M300 270 H360 M300 265 V275 M360 265 V275" stroke={INK} strokeWidth="1.5" />
+        <text x="366" y="274" fill={STEEL}>2 m</text>
+        <rect x="12" y="12" width="124" height="22" fill={INK} />
+        <text x="20" y="27" fill="#f5f5f0">
+          RADAR 60 GHz · CO₂
+        </text>
+      </g>
+    </svg>
+  )
+}
+
 export function ProjectVisual({ kind, alt }: { kind: Kind; alt: string }) {
   if (kind === "canairio") return <CanairioDiagram alt={alt} />
   if (kind === "meshtastic") return <MeshtasticDiagram alt={alt} />
+  if (kind === "hizkera") return <HizkeraDiagram alt={alt} />
   const src = kind === "openflexure" ? "/images/openflexure.jpg" : "/images/minicnc.jpg"
   return (
     <Image

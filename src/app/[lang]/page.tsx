@@ -348,37 +348,19 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                     </p>
                   </div>
                   {item.image && (
-                    <div className="relative aspect-[4/3] overflow-hidden border border-foreground/20 bg-card md:col-span-3">
+                    <figure className="relative aspect-[4/3] overflow-hidden border border-foreground/20 bg-card md:col-span-3">
                       <Image src={asset(item.image)} alt={item.imageAlt ?? item.title} fill sizes="(min-width: 768px) 24vw, 100vw" className="object-cover" />
-                    </div>
+                      {item.imageCredit && (
+                        <figcaption className="absolute bottom-0 right-0 bg-foreground px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-background">
+                          {item.imageCredit}
+                        </figcaption>
+                      )}
+                    </figure>
                   )}
                 </Reveal>
               ))}
             </ol>
           </div>
-        </section>
-
-        {/* ── Formación ────────────────────────────────────── */}
-        <section id="formacion" aria-labelledby="formacion-title" className="scroll-mt-16 border-b-2 border-foreground bg-accent">
-          <Reveal className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-12 lg:items-end lg:px-8">
-            <div className="lg:col-span-7">
-              <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em]">
-                <span aria-hidden="true" className="size-2.5 bg-foreground" />
-                {t.training.eyebrow}
-              </p>
-              <h2 id="formacion-title" className="font-display mt-4 text-step-4 font-black leading-none">
-                {t.training.title}
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-step-0 leading-relaxed">{t.training.body}</p>
-              <div className="mt-4">
-                <ExternalLink href={links.formacion} newTab={t.ui.newTab}>
-                  {t.training.link}
-                </ExternalLink>
-              </div>
-            </div>
-          </Reveal>
         </section>
 
         {/* ── Contacto ─────────────────────────────────────── */}
