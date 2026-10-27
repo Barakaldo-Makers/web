@@ -1,0 +1,25 @@
+# Apache (hosting de IONOS). Sustituye al .htaccess de WordPress en la carpeta de
+# barakaldomakers.org. Las redirecciones solo afectan a las rutas de esta web: Moodle,
+# descargas/ y cualquier otra carpeta que ya haya en el servidor siguen como estaban.
+
+# index.html primero (la web nueva); index.php para las aplicaciones PHP de las subcarpetas
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Rutas de la web nueva: /, /es/, /eu/, sus archivos y las redirecciones de la web antigua
+  RewriteCond %{REQUEST_URI} ^/((es|eu|_next|images|sobre-nosotros|microscopio-openflexure|mini-cnc-pcb)(/.*)?|index\.html|404\.html|robots\.txt|sitemap\.xml|icon\.png)?$
+  # a https://barakaldomakers.org (sin www). IONOS recomienda mirar el puerto, no %{HTTPS}.
+  RewriteCond %{SERVER_PORT} !=443 [OR]
+  RewriteCond %{HTTP_HOST} !^barakaldomakers\.org$ [NC]
+  RewriteRule ^ https://barakaldomakers.org%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Los archivos de _next/static llevan una huella en el nombre: no cambian nunca
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>

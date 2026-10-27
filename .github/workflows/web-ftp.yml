@@ -1,0 +1,45 @@
+# Compila la web para barakaldomakers.org y la deja en un zip («web-para-ftp») para subirla
+# por FTP a IONOS. Se lanza con cada push a main y a mano (Actions → Run workflow).
+# Se compila aquí, en Linux, porque en Windows Next 16.4 guarda mal los archivos __next.*.
+# Descarga: pestaña Actions → la última ejecución → Artifacts → web-para-ftp.
+name: Web para FTP
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Compilar
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Comprobar que no pisa carpetas del servidor
+        run: |
+          test -f out/index.html -a -f out/.htaccess
+          for carpeta in moodle descargas formacion wp-admin wp-content wp-includes; do
+            if [ -e "out/$carpeta" ]; then echo "::error::out/$carpeta chocaría con la carpeta del servidor"; exit 1; fi
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-para-ftp
+          path: out/
+          include-hidden-files: true # el .htaccess
+          retention-days: 30

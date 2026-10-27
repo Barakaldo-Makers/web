@@ -11,9 +11,31 @@ npm ci
 npm run build      # genera la web completa en out/
 ```
 
-`out/` son archivos estáticos (HTML, CSS, JS, imágenes): se suben tal cual a la raíz del
-alojamiento, sin PHP ni base de datos. Ya va preparada para `https://barakaldomakers.org`
-(canonical, sitemap, Open Graph).
+`out/` son archivos estáticos (HTML, CSS, JS, imágenes): se suben tal cual a la carpeta de
+barakaldomakers.org en IONOS, sin PHP ni base de datos. Ya va preparada para
+`https://barakaldomakers.org` (canonical, sitemap, Open Graph).
+
+### Subirla por FTP a IONOS
+
+1. Coge la web compilada: en GitHub, **Actions → Web para FTP →** la última ejecución →
+   **Artifacts → web-para-ftp** (se compila sola con cada push; mejor que compilar en Windows,
+   ver más abajo). Descomprime el zip.
+2. Con FileZilla (SFTP, puerto 22), entra en la carpeta a la que apunta barakaldomakers.org.
+3. La primera vez, **descarga una copia del `.htaccess` que haya** (es el de WordPress).
+4. Arrastra **el contenido** de la carpeta descomprimida (no la carpeta) y, si pregunta,
+   elige **Sobrescribir**. Activa «Mostrar archivos ocultos» para ver el `.htaccess`.
+
+Subir por FTP **no borra nada**: solo añade archivos o sustituye los que se llaman igual. Las
+carpetas que no son de esta web (Moodle, `descargas/`…) no se tocan. No uses la
+«sincronización» de FileZilla con borrado. El workflow comprueba que la web no tenga carpetas
+que choquen con las del servidor (`moodle`, `descargas`, `formacion`, `wp-*`).
+
+`public/.htaccess` sustituye al de WordPress: sirve `index.html` antes que `index.php`,
+usa la página 404 de la web y lleva a `https://barakaldomakers.org` (sin www) solo las rutas de
+esta web; las demás carpetas siguen como estaban.
+
+Cada versión nueva deja en `_next/static/` archivos con otro nombre: los viejos no molestan.
+Si algún día se quiere limpiar, se puede borrar `_next/` entero justo antes de subir.
 
 El contenido de la web WordPress antigua ya está migrado ("Sobre nosotros" y los diarios de
 montaje del Microscopio OpenFlexure y la Mini CNC-PCB): la web nueva no enlaza a ella.
