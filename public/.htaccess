@@ -41,7 +41,9 @@ ErrorDocument 404 /404.html
     # Al conectar Formspree, añadir https://formspree.io a form-action (y a connect-src si se envía con fetch).
     Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
   </If>
-  # Sin HSTS de momento: vale para todo el dominio, Moodle incluido, y no sabemos si este va por https.
+  # El navegador recuerda un año que barakaldomakers.org va solo por https. Sin includeSubDomains:
+  # el Moodle (aprendecon.) y formacion. son otros subdominios y el Moodle aún funciona por http.
+  Header always set Strict-Transport-Security "max-age=31536000"
 
   # Los archivos de _next/static llevan una huella en el nombre: no cambian nunca
   <If "%{REQUEST_URI} =~ m#^/_next/static/#">
