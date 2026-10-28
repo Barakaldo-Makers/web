@@ -9,6 +9,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Como hacía el .htaccess de WordPress: pasa la cabecera Authorization a PHP (para Moodle u
+  # otras aplicaciones PHP de las subcarpetas). No corta el resto de reglas.
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
   # Rutas de la web nueva: /, /es/, /eu/, sus archivos y las redirecciones de la web antigua
   RewriteCond %{REQUEST_URI} ^/((es|eu|_next|images|sobre-nosotros|microscopio-openflexure|mini-cnc-pcb)(/.*)?|index\.html|404\.html|robots\.txt|sitemap\.xml|icon\.png)?$
   # a https://barakaldomakers.org (sin www). IONOS recomienda mirar el puerto, no %{HTTPS}.
