@@ -32,7 +32,9 @@ que choquen con las del servidor (`moodle`, `descargas`, `formacion`, `wp-*`).
 
 `public/.htaccess` sustituye al de WordPress: sirve `index.html` antes que `index.php`,
 usa la página 404 de la web y lleva a `https://barakaldomakers.org` (sin www) solo las rutas de
-esta web; las demás carpetas siguen como estaban.
+esta web; las demás carpetas siguen como estaban. También pone cabeceras de seguridad (CSP y otras)
+solo en esas rutas: si la web carga algo de otro dominio (Formspree, un vídeo…), hay que
+permitirlo en su `Content-Security-Policy`.
 
 Cada versión nueva deja en `_next/static/` archivos con otro nombre: los viejos no molestan.
 Si algún día se quiere limpiar, se puede borrar `_next/` entero justo antes de subir.
