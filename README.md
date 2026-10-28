@@ -43,6 +43,9 @@ El contenido de la web WordPress antigua ya está migrado ("Sobre nosotros" y lo
 montaje del Microscopio OpenFlexure y la Mini CNC-PCB): la web nueva no enlaza a ella.
 Las URL antiguas (`/sobre-nosotros/`, `/microscopio-openflexure/`, `/mini-cnc-pcb/`) siguen
 funcionando: `public/` tiene una página en cada una que redirige a su versión nueva.
+En IONOS, `public/.htaccess` las redirige antes con un 301, igual que las otras páginas antiguas de
+WordPress (`/aviso-legal/`, `/contacto/`, `/politica-de-privacidad/`, `/politica-de-cookies/`,
+`/personalizar-cookies/`).
 
 ## Copia en GitHub
 

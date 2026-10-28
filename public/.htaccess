@@ -13,6 +13,15 @@ ErrorDocument 404 /404.html
   # otras aplicaciones PHP de las subcarpetas). No corta el resto de reglas.
   RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+  # Páginas de la web WordPress antigua → su equivalente en la nueva (301, un solo salto)
+  RewriteRule ^aviso-legal/?$ https://barakaldomakers.org/es/aviso-legal/ [R=301,L]
+  RewriteRule ^politica-de-privacidad/?$ https://barakaldomakers.org/es/privacidad/ [R=301,L]
+  RewriteRule ^(politica-de-cookies|personalizar-cookies)/?$ https://barakaldomakers.org/es/cookies/ [R=301,L]
+  RewriteRule ^contacto/?$ https://barakaldomakers.org/es/#contacto [R=301,L,NE]
+  RewriteRule ^sobre-nosotros/?$ https://barakaldomakers.org/es/sobre-nosotros/ [R=301,L]
+  RewriteRule ^microscopio-openflexure/?$ https://barakaldomakers.org/es/proyectos/openflexure/ [R=301,L]
+  RewriteRule ^mini-cnc-pcb/?$ https://barakaldomakers.org/es/proyectos/mini-cnc-pcb/ [R=301,L]
+
   # Rutas de la web nueva: /, /es/, /eu/, sus archivos y las redirecciones de la web antigua
   RewriteCond %{REQUEST_URI} ^/((es|eu|_next|images|sobre-nosotros|microscopio-openflexure|mini-cnc-pcb)(/.*)?|index\.html|404\.html|robots\.txt|sitemap\.xml|icon\.png)?$
   # a https://barakaldomakers.org (sin www). IONOS recomienda mirar el puerto, no %{HTTPS}.
